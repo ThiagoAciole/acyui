@@ -27,6 +27,7 @@ export type SidebarItemProps<TElement extends React.ElementType = 'button'> = Po
 
 export interface SidebarGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
     title: React.ReactNode;
+    leftIcon?: React.ReactNode;
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;

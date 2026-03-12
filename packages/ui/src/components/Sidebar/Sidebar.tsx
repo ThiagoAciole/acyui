@@ -64,6 +64,25 @@ function countSidebarItems(children: React.ReactNode): number {
     return count;
 }
 
+function findFirstSidebarItem(children: React.ReactNode): React.ReactElement | null {
+    for (const child of React.Children.toArray(children)) {
+        if (!React.isValidElement(child)) {
+            continue;
+        }
+
+        if (child.type === SidebarItem) {
+            return child;
+        }
+
+        const nestedItem = findFirstSidebarItem(child.props.children);
+        if (nestedItem) {
+            return nestedItem;
+        }
+    }
+
+    return null;
+}
+
 function SidebarRoot({
     collapsed: controlledCollapsed,
     defaultCollapsed = false,
@@ -210,6 +229,7 @@ function SidebarItem<TElement extends React.ElementType = 'button'>({
 
 function SidebarGroup({
     title,
+    leftIcon,
     defaultOpen = true,
     open: controlledOpen,
     onOpenChange,
@@ -228,13 +248,23 @@ function SidebarGroup({
     const hasMatch = !normalizedSearchTerm || childText.includes(normalizedSearchTerm);
     const shouldForceOpen = Boolean(normalizedSearchTerm && hasMatch);
     const isOpen = collapsed ? false : shouldForceOpen || open;
+    const firstItem = findFirstSidebarItem(children);
 
     if (!hasMatch) {
         return null;
     }
 
-    const handleToggle = () => {
-        if (!collapsible || collapsed || shouldForceOpen) {
+    const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (collapsed) {
+            const onClick = firstItem?.props?.onClick;
+            if (typeof onClick === 'function') {
+                onClick(event);
+            }
+
+            return;
+        }
+
+        if (!collapsible || shouldForceOpen) {
             return;
         }
 
@@ -257,9 +287,10 @@ function SidebarGroup({
                 className="sidebar__group-trigger"
                 onClick={handleToggle}
                 aria-expanded={isOpen}
-                disabled={!collapsible || collapsed || shouldForceOpen}
+                disabled={!collapsible || shouldForceOpen}
             >
-                <span className="sidebar__group-title">{title}</span>
+                {leftIcon ? <span className="sidebar__group-left-icon">{leftIcon}</span> : null}
+                {!collapsed ? <span className="sidebar__group-title">{title}</span> : null}
                 <span className="sidebar__group-icon">
                     <Icon name="chevron-down" size={16} />
                 </span>

@@ -1,8 +1,8 @@
-import './List.css';
 import { createContext, useContext } from 'react';
+import { Icon } from '../../icons';
 import { classNames } from '../../utils/classNames';
 import { Text } from '../Text/Text';
-import { Icon } from '../../icons';
+import './List.css';
 import type { ListItemProps, ListProps } from './types';
 
 export type { ListItemProps, ListProps, ListVariant } from './types';
@@ -29,6 +29,7 @@ function ListItem({
     className,
     onClick,
     ...props
+    
 }: ListItemProps) {
     const { variant } = useContext(ListContext);
     const resolvedStart = variant === 'checklist' && !startContent ? <Icon name="check" size={16} /> : startContent;

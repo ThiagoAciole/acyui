@@ -1,9 +1,19 @@
-export type Category = 'Basics' | 'Forms' | 'Layout' | 'Feedback' | 'Overlay' | 'Navigation';
+import type { IconName } from 'acyon';
+
+export type Category =
+  | 'Typography'
+  | 'Form'
+  | 'DataDisplay'
+  | 'Navigation'
+  | 'Feedback'
+  | 'Overlay'
+  | 'Layout';
 
 export interface ComponentRoute {
   id: string;
   name: string;
   category: Category;
+  icon: IconName;
   description: string;
   initialCode: string;
 }
@@ -14,19 +24,21 @@ const jsxSnippet = (imports: string[], body: string[]) =>
   block([`const { ${imports.join(', ')} } = Labs;`, '', ...body]);
 
 export const componentCategories: Category[] = [
-  'Basics',
-  'Forms',
-  'Layout',
+  'Typography',
+  'Form',
+  'DataDisplay',
+  'Navigation',
   'Feedback',
   'Overlay',
-  'Navigation',
+  'Layout',
 ];
 
 export const componentRoutes: ComponentRoute[] = [
   {
     id: 'accordion',
     name: 'Accordion',
-    category: 'Navigation',
+    category: 'DataDisplay',
+    icon: 'list-collapse',
     description: 'Secoes expansivas para organizacao progressiva de conteudo.',
     initialCode: jsxSnippet(['Accordion'], [
       'return (',
@@ -44,7 +56,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'avatar',
     name: 'Avatar',
-    category: 'Basics',
+    category: 'DataDisplay',
+    icon: 'user-circle',
     description: 'Representacao visual de pessoas e entidades.',
     initialCode: jsxSnippet(['Avatar'], [
       'return (',
@@ -58,7 +71,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'badge',
     name: 'Badge',
-    category: 'Basics',
+    category: 'DataDisplay',
+    icon: 'badge',
     description: 'Indicadores compactos para status e taxonomia.',
     initialCode: jsxSnippet(['Badge'], [
       'return (',
@@ -72,6 +86,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'box',
     name: 'Box',
     category: 'Layout',
+    icon: 'box',
     description: 'Bloco base de composicao para layout e espacamento.',
     initialCode: jsxSnippet(['Box'], [
       'return (',
@@ -91,6 +106,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'breadcrumb',
     name: 'Breadcrumb',
     category: 'Navigation',
+    icon: 'milestone',
     description: 'Trilha de navegacao hierarquica.',
     initialCode: jsxSnippet(['Breadcrumb'], [
       'return (',
@@ -107,7 +123,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'button',
     name: 'Button',
-    category: 'Basics',
+    category: 'Form',
+    icon: 'rectangle-horizontal',
     description: 'Acionador principal para acoes e comandos.',
     initialCode: jsxSnippet(['Button', 'Flex'], [
       'return (',
@@ -128,7 +145,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'card',
     name: 'Card',
-    category: 'Layout',
+    category: 'DataDisplay',
+    icon: 'panel-top',
     description: 'Container de conteudo agrupado.',
     initialCode: jsxSnippet(['Card', 'CardBody', 'Text'], [
       'return (',
@@ -145,7 +163,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'checkbox',
     name: 'Checkbox',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'check-square',
     description: 'Selecao booleana independente.',
     initialCode: jsxSnippet(['Checkbox'], [
       'return (',
@@ -159,7 +178,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'code',
     name: 'Code',
-    category: 'Basics',
+    category: 'Typography',
+    icon: 'code',
     description: 'Estilo inline para snippets e tokens tecnicos.',
     initialCode: jsxSnippet(['Code'], [
       'return (',
@@ -173,6 +193,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'container',
     name: 'Container',
     category: 'Layout',
+    icon: 'box',
     description: 'Limita largura e centraliza conteudo.',
     initialCode: jsxSnippet(['Container'], [
       'return (',
@@ -185,7 +206,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'date-picker',
     name: 'DatePicker',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'calendar',
     description: 'Entrada de data com experiencia guiada.',
     initialCode: jsxSnippet(['DatePicker'], [
       'return (',
@@ -197,6 +219,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'divider',
     name: 'Divider',
     category: 'Layout',
+    icon: 'minus',
     description: 'Separador visual entre blocos relacionados.',
     initialCode: jsxSnippet(['Divider', 'Flex', 'Text'], [
       'return (',
@@ -212,6 +235,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'drawer',
     name: 'Drawer',
     category: 'Overlay',
+    icon: 'panel-left',
     description: 'Painel deslizante para fluxos secundarios.',
     initialCode: jsxSnippet(['Box', 'Heading4', 'Text'], [
       'return (',
@@ -233,7 +257,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'empty-state',
     name: 'EmptyState',
-    category: 'Feedback',
+    category: 'DataDisplay',
+    icon: 'ghost',
     description: 'Mensagem orientada para estados sem dados.',
     initialCode: jsxSnippet(['EmptyState', 'Button'], [
       'return (',
@@ -252,7 +277,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'file-upload',
     name: 'FileUpload',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'upload-cloud',
     description: 'Entrada de arquivos com dropzone e validacao.',
     initialCode: jsxSnippet(['FileUpload'], [
       'return (',
@@ -267,6 +293,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'flex',
     name: 'Flex',
     category: 'Layout',
+    icon: 'align-horizontal',
     description: 'Layout flexivel para alinhamento e distribuicao.',
     initialCode: jsxSnippet(['Flex', 'Badge'], [
       'return (',
@@ -282,6 +309,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'grid',
     name: 'Grid',
     category: 'Layout',
+    icon: 'grid',
     description: 'Composicao em colunas responsivas.',
     initialCode: jsxSnippet(['Grid', 'Card', 'CardBody'], [
       'return (',
@@ -296,7 +324,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'heading',
     name: 'Heading',
-    category: 'Basics',
+    category: 'Typography',
+    icon: 'heading1',
     description: 'Titulos com escala tipografica consistente.',
     initialCode: jsxSnippet(['Heading'], [
       'return (',
@@ -309,7 +338,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'icon-button',
     name: 'IconButton',
-    category: 'Basics',
+    category: 'Form',
+    icon: 'mouse-pointer',
     description: 'Botao compacto orientado por iconografia.',
     initialCode: jsxSnippet(['IconButton', 'UploadIcon'], [
       'return (',
@@ -323,7 +353,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'image',
     name: 'Image',
-    category: 'Basics',
+    category: 'DataDisplay',
+    icon: 'image',
     description: 'Renderizacao de imagens com estilos padronizados.',
     initialCode: jsxSnippet(['Box', 'Image'], [
       'return (',
@@ -339,7 +370,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'input',
     name: 'Input',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'text-cursor',
     description: 'Campo de texto padronizado.',
     initialCode: jsxSnippet(['Input'], [
       'return (',
@@ -352,7 +384,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'link',
     name: 'Link',
-    category: 'Navigation',
+    category: 'Typography',
+    icon: 'link',
     description: 'Links com semantica e estilo consistentes.',
     initialCode: jsxSnippet(['Link'], [
       'return (',
@@ -365,7 +398,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'list',
     name: 'List',
-    category: 'Layout',
+    category: 'DataDisplay',
+    icon: 'list',
     description: 'Agrupamento vertical de itens relacionados.',
     initialCode: jsxSnippet(['List'], [
       'return (',
@@ -381,6 +415,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'loader',
     name: 'Loader',
     category: 'Feedback',
+    icon: 'loader2',
     description: 'Indicador visual de carregamento.',
     initialCode: jsxSnippet(['Loader'], [
       'return (',
@@ -392,6 +427,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'modal',
     name: 'Modal',
     category: 'Overlay',
+    icon: 'app-window',
     description: 'Dialogo modal para acoes focadas.',
     initialCode: jsxSnippet(['Box', 'Heading4', 'Text'], [
       'return (',
@@ -413,7 +449,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'multi-select',
     name: 'MultiSelect',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'list-checks',
     description: 'Selecao multipla com lista controlada.',
     initialCode: jsxSnippet(['MultiSelect'], [
       'return (',
@@ -431,7 +468,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'page-header',
     name: 'PageHeader',
-    category: 'Navigation',
+    category: 'Layout',
+    icon: 'heading1',
     description: 'Cabecalho de pagina com contexto e acoes.',
     initialCode: jsxSnippet(['Button', 'PageHeader'], [
       'return (',
@@ -451,6 +489,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'pagination',
     name: 'Pagination',
     category: 'Navigation',
+    icon: 'more-horizontal',
     description: 'Navegacao paginada entre colecoes.',
     initialCode: jsxSnippet(['Pagination'], [
       'return (',
@@ -466,6 +505,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'progress',
     name: 'Progress',
     category: 'Feedback',
+    icon: 'activity',
     description: 'Indicador de progresso linear.',
     initialCode: jsxSnippet(['Progress'], [
       'return (',
@@ -476,7 +516,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'radio',
     name: 'Radio',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'circle-dot',
     description: 'Selecao exclusiva entre opcoes.',
     initialCode: jsxSnippet(['Flex', 'Radio'], [
       'return (',
@@ -490,7 +531,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'search',
     name: 'Search',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'search',
     description: 'Campo de busca com affordance dedicada.',
     initialCode: jsxSnippet(['Search'], [
       'return (',
@@ -503,7 +545,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'select',
     name: 'Select',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'list-filter',
     description: 'Selecao simples em lista.',
     initialCode: jsxSnippet(['Select'], [
       'return (',
@@ -520,7 +563,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'sidebar',
     name: 'Sidebar',
-    category: 'Navigation',
+    category: 'Layout',
+    icon: 'panel-left',
     description: 'Estrutura lateral para navegacao persistente.',
     initialCode: jsxSnippet(['Box', 'Text'], [
       'return (',
@@ -542,6 +586,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'skeleton',
     name: 'Skeleton',
     category: 'Feedback',
+    icon: 'component',
     description: 'Placeholder visual para carregamento de conteudo.',
     initialCode: jsxSnippet(['Flex', 'Skeleton'], [
       'return (',
@@ -555,7 +600,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'slider',
     name: 'Slider',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'sliders-horizontal',
     description: 'Controle de faixa numerica.',
     initialCode: jsxSnippet(['Slider'], [
       'return (',
@@ -570,6 +616,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'spacer',
     name: 'Spacer',
     category: 'Layout',
+    icon: 'ruler',
     description: 'Espacador declarativo entre elementos.',
     initialCode: jsxSnippet(['Badge', 'Flex', 'Spacer'], [
       'return (',
@@ -584,7 +631,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'switch',
     name: 'Switch',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'toggle-right',
     description: 'Alternancia binaria para configuracoes.',
     initialCode: jsxSnippet(['Switch'], [
       'return (',
@@ -598,7 +646,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'table',
     name: 'Table',
-    category: 'Layout',
+    category: 'DataDisplay',
+    icon: 'table',
     description: 'Apresentacao tabular de dados.',
     initialCode: jsxSnippet(['Table', 'Thead', 'Tbody', 'Tr', 'Th', 'Td'], [
       'return (',
@@ -627,6 +676,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'tabs',
     name: 'Tabs',
     category: 'Navigation',
+    icon: 'folder',
     description: 'Alternancia entre paines relacionados.',
     initialCode: jsxSnippet(['Tabs'], [
       'return (',
@@ -642,7 +692,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'theme-provider',
     name: 'ThemeProvider',
-    category: 'Navigation',
+    category: 'Feedback',
+    icon: 'component',
     description: 'Provider de tema e hook de alternancia global.',
     initialCode: jsxSnippet(['Box', 'Text'], [
       'return (',
@@ -663,7 +714,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'tag',
     name: 'Tag',
-    category: 'Basics',
+    category: 'DataDisplay',
+    icon: 'tag',
     description: 'Rotulos compactos para categorizacao.',
     initialCode: jsxSnippet(['Tag'], [
       'return (',
@@ -676,7 +728,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'text',
     name: 'Text',
-    category: 'Basics',
+    category: 'Typography',
+    icon: 'type',
     description: 'Texto base com controle de hierarquia visual.',
     initialCode: jsxSnippet(['Text'], [
       'return (',
@@ -689,7 +742,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'text-area',
     name: 'TextArea',
-    category: 'Forms',
+    category: 'Form',
+    icon: 'form-input',
     description: 'Campo multi-linha para entradas longas.',
     initialCode: jsxSnippet(['TextArea'], [
       'return (',
@@ -702,7 +756,8 @@ export const componentRoutes: ComponentRoute[] = [
   {
     id: 'timeline',
     name: 'Timeline',
-    category: 'Feedback',
+    category: 'DataDisplay',
+    icon: 'git-commit',
     description: 'Sequencia temporal de eventos ou etapas.',
     initialCode: jsxSnippet(['Timeline', 'TimelineItem'], [
       'return (',
@@ -718,6 +773,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'toast',
     name: 'ToastProvider',
     category: 'Feedback',
+    icon: 'message-square',
     description: 'Provider e hook para feedback efemero na interface.',
     initialCode: jsxSnippet(['Box', 'Text', 'Button', 'useToast'], [
       'function ToastDemo() {',
@@ -750,6 +806,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'tooltip',
     name: 'Tooltip',
     category: 'Overlay',
+    icon: 'message-circle',
     description: 'Ajuda contextual em hover ou foco.',
     initialCode: jsxSnippet(['Tooltip', 'Button'], [
       'return (',
@@ -765,6 +822,7 @@ export const componentRoutes: ComponentRoute[] = [
     id: 'top-bar',
     name: 'TopBar',
     category: 'Navigation',
+    icon: 'layout-template',
     description: 'Cabecalho superior para navegacao e contexto global.',
     initialCode: jsxSnippet(['TopBar', 'Heading5'], [
       'return (',
