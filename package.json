@@ -1,5 +1,5 @@
 {
-  "name": "labs-monorepo",
+  "name": "acyon-monorepo",
   "private": true,
   "version": "0.0.0",
   "workspaces": [
@@ -8,10 +8,10 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=apps/playground",
-    "build": "npm run build --workspace=packages/labs",
-    "build:all": "npm run build --workspace=packages/labs && npm run build --workspace=apps/playground",
-    "pack:labs": "npm pack --workspace=packages/labs",
-    "publish:labs": "npm publish --workspace=packages/labs",
+    "build": "npm run build --workspace=packages/ui",
+    "build:all": "npm run build --workspace=packages/ui && npm run build --workspace=apps/playground",
+    "pack:acyon": "npm pack --workspace=packages/ui",
+    "publish:acyon": "npm publish --workspace=packages/ui",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,css,json,md}\""
   },

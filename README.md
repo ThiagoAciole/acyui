@@ -1,23 +1,23 @@
-# labs
+# acyon
 
 Biblioteca de componentes React para uso em aplicacoes web.
 
 ## Instalacao
 
 ```bash
-npm install @aciolelabs/labs-ui
+npm install acyon
 ```
 
 ## Uso
 
 ```tsx
-import { ThemeProvider, Button } from '@aciolelabs/labs-ui';
-import '@aciolelabs/labs-ui/styles';
+import { ThemeProvider, Button } from 'acyon';
+import 'acyon/styles';
 
 function App() {
   return (
     <ThemeProvider>
-      <Button variant="primary">Hello labs</Button>
+      <Button variant="primary">Hello acyon</Button>
     </ThemeProvider>
   );
 }
@@ -26,8 +26,8 @@ function App() {
 ## Publicacao
 
 ```bash
-npm run build --workspace=packages/labs
-npm publish --workspace=packages/labs
+npm run build --workspace=packages/ui
+npm publish --workspace=packages/ui
 ```
 
 `prepublishOnly` ja executa o build automaticamente no pacote.

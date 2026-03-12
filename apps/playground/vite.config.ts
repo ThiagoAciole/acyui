@@ -7,8 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       // Aponta para o source da lib local para hot reload durante dev
-      '@aciole/labs': path.resolve(__dirname, '../../packages/labs/src/index.ts'),
-      '/src/icons': path.resolve(__dirname, '../../packages/labs/src/icons'),
+      'acyon': path.resolve(__dirname, '../../packages/ui/src/index.ts'),
+      '/src/icons': path.resolve(__dirname, '../../packages/ui/src/icons'),
     },
   },
   server: {

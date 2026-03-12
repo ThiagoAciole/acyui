@@ -1,0 +1,22 @@
+.dashboard-page__shortcuts {
+  margin-top: var(--space-12);
+}
+
+.dashboard-page__shortcuts-title {
+  margin-bottom: var(--space-6);
+}
+
+.dashboard-page__shortcut-card {
+  text-decoration: none;
+}
+
+.dashboard-page__shortcut-icon {
+  padding: var(--space-3);
+  background: var(--color-bg-subtle);
+  border-radius: var(--labs-radius-md);
+}
+
+.dashboard-page__shortcut-icon--labs {
+  padding: var(--labs-space-3);
+  background: var(--labs-color-bg-subtle);
+}

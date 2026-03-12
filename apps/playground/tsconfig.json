@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": true,
     "paths": {
-      "@aciole/labs": ["../../packages/labs/src/index.ts"]
+      "acyon": ["../../packages/ui/src/index.ts"]
     }
   },
   "include": ["src"],

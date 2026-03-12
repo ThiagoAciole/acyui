@@ -213,7 +213,7 @@ export const componentRoutes: ComponentRoute[] = [
     name: 'Drawer',
     category: 'Overlay',
     description: 'Painel deslizante para fluxos secundarios.',
-    initialCode: jsxSnippet(['Box', 'Heading', 'Text'], [
+    initialCode: jsxSnippet(['Box', 'Heading4', 'Text'], [
       'return (',
       '  <Box',
       '    style={{',
@@ -222,7 +222,7 @@ export const componentRoutes: ComponentRoute[] = [
       "      background: 'var(--labs-color-bg-subtle)',",
       '    }}',
       '  >',
-      '    <Heading size="md">Drawer</Heading>',
+      '    <Heading4>Drawer</Heading4>',
       '    <Text color="subtle">',
       '      Use este espaco para montar um fluxo interativo com controle de abertura.',
       '    </Text>',
@@ -279,19 +279,6 @@ export const componentRoutes: ComponentRoute[] = [
     ]),
   },
   {
-    id: 'form-field',
-    name: 'FormField',
-    category: 'Forms',
-    description: 'Wrapper semantico para labels, ajuda e erro.',
-    initialCode: jsxSnippet(['FormField', 'Input'], [
-      'return (',
-      '  <FormField label="Nome" hint="Digite seu nome completo">',
-      '    <Input placeholder="Nome" />',
-      '  </FormField>',
-      ');',
-    ]),
-  },
-  {
     id: 'grid',
     name: 'Grid',
     category: 'Layout',
@@ -313,7 +300,7 @@ export const componentRoutes: ComponentRoute[] = [
     description: 'Titulos com escala tipografica consistente.',
     initialCode: jsxSnippet(['Heading'], [
       'return (',
-      '  <Heading size="xl">',
+      '  <Heading>',
       '    Titulo de exemplo',
       '  </Heading>',
       ');',
@@ -406,7 +393,7 @@ export const componentRoutes: ComponentRoute[] = [
     name: 'Modal',
     category: 'Overlay',
     description: 'Dialogo modal para acoes focadas.',
-    initialCode: jsxSnippet(['Box', 'Heading', 'Text'], [
+    initialCode: jsxSnippet(['Box', 'Heading4', 'Text'], [
       'return (',
       '  <Box',
       '    style={{',
@@ -415,7 +402,7 @@ export const componentRoutes: ComponentRoute[] = [
       "      background: 'var(--labs-color-bg-subtle)',",
       '    }}',
       '  >',
-      '    <Heading size="md">Modal</Heading>',
+      '    <Heading4>Modal</Heading4>',
       '    <Text color="subtle">',
       '      Use este espaco para testar variacoes de conteudo ou estado.',
       '    </Text>',
@@ -779,10 +766,10 @@ export const componentRoutes: ComponentRoute[] = [
     name: 'TopBar',
     category: 'Navigation',
     description: 'Cabecalho superior para navegacao e contexto global.',
-    initialCode: jsxSnippet(['TopBar', 'Heading'], [
+    initialCode: jsxSnippet(['TopBar', 'Heading5'], [
       'return (',
       '  <TopBar',
-      '    logo={<Heading size="sm">Labs</Heading>}',
+      '    logo={<Heading5>Labs</Heading5>}',
       '    navItems={[',
       "      { label: 'Playground', href: '#/' },",
       "      { label: 'Button', href: '#/button' },",

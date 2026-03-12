@@ -2,7 +2,7 @@
   "name": "@labs/playground",
   "version": "0.0.0",
   "private": true,
-  "description": "Labs Playground - Component showcase and development environment",
+  "description": "Acyon Playground - Component showcase and development environment",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +11,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@aciole/labs": "*",
+    "acyon": "*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },
