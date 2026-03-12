@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Icon, List, PageHeader, Text } from 'acyon';
+import { Box, Flex, Grid, Icon, List, PageHeader, Text } from '@aciole/acyon';
 import { DocSection } from '../../../../components/DocSection';
 import { QuickStartCard } from '../../../../components/QuickStartCard';
 import './styles.css';

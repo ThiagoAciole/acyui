@@ -1,4 +1,4 @@
-import { Badge, Box, PageHeader } from 'acyon';
+import { Badge, Box, PageHeader } from '@aciole/acyon';
 import { LivePlayground } from '../../components/LivePlayground';
 import type { ComponentRoute } from '../../data/componentRoutes';
 import './styles.css';

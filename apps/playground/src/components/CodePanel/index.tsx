@@ -1,4 +1,4 @@
-import { Box, Text } from 'acyon';
+import { Box, Text } from '@aciole/acyon';
 import './styles.css';
 
 interface CodePanelProps {

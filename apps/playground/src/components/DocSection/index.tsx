@@ -1,4 +1,4 @@
-import { Box, Flex, Heading2, Icon } from 'acyon';
+import { Box, Flex, Heading2, Icon } from '@aciole/acyon';
 import './styles.css';
 
 interface DocSectionProps {

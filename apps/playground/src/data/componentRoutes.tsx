@@ -1,4 +1,4 @@
-import type { IconName } from 'acyon';
+import type { IconName } from '@aciole/acyon';
 
 export type Category =
   | 'Typography'
@@ -239,7 +239,7 @@ export const componentRoutes: ComponentRoute[] = [
     description: 'Painel deslizante para fluxos secundarios.',
     initialCode: block([
       "import { useState } from 'react';",
-      "import { Button, Drawer, Flex, Text } from 'acyon';",
+      "import { Button, Drawer, Flex, Text } from '@aciole/acyon';",
       '',
       'export function Example() {',
       '  const [open, setOpen] = useState(false);',
@@ -442,7 +442,7 @@ export const componentRoutes: ComponentRoute[] = [
     description: 'Dialogo modal para acoes focadas.',
     initialCode: block([
       "import { useState } from 'react';",
-      "import { Button, Flex, Modal, Text } from 'acyon';",
+      "import { Button, Flex, Modal, Text } from '@aciole/acyon';",
       '',
       'export function Example() {',
       '  const [open, setOpen] = useState(false);',

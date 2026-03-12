@@ -1,4 +1,4 @@
-import { Box } from 'acyon';
+import { Box } from '@aciole/acyon';
 import './styles.css';
 import { InstallationPage } from './components/InstallationPage';
 import { OverviewPage } from './components/OverviewPage';

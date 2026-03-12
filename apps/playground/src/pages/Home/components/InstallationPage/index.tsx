@@ -1,4 +1,4 @@
-import { Box, Code, PageHeader } from 'acyon';
+import { Box, Code, PageHeader } from '@aciole/acyon';
 import { InstallStep } from '../../../../components/InstallStep';
 import './styles.css';
 
@@ -20,7 +20,7 @@ export function InstallationPage() {
               Adicione <Code>acyon</Code> ao seu projeto com o gerenciador de pacotes da stack.
             </>
           }
-          code="npm install acyon"
+          code="npm install @aciole/acyon"
         />
 
         <InstallStep
@@ -42,7 +42,7 @@ export function InstallationPage() {
               Envolva a aplicacao com <Code>ThemeProvider</Code>. Ele ja inclui a camada de toast por padrao.
             </>
           }
-          code={`import { ThemeProvider } from 'acyon';
+          code={`import { ThemeProvider } from '@aciole/acyon';
 
 function AppProviders({ children }) {
   return (

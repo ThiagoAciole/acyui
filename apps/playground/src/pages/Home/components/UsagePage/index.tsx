@@ -1,4 +1,4 @@
-import { Accordion, Code, Flex, Link, PageHeader, Text } from 'acyon';
+import { Accordion, Code, Flex, Link, PageHeader, Text } from '@aciole/acyon';
 import { CodePanel } from '../../../../components/CodePanel';
 import { DocSection } from '../../../../components/DocSection';
 
@@ -18,7 +18,7 @@ export function UsagePage() {
           </Text>
           <CodePanel
             language="tsx"
-            code={`import { Button } from 'acyon';
+            code={`import { Button } from '@aciole/acyon';
 
 export function Example() {
   return <Button variant="primary">Ola mundo</Button>;

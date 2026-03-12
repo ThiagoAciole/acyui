@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
-import * as React from 'react';
-import * as Labs from 'acyon';
-import ts from 'typescript';
+import * as Labs from '@aciole/acyon';
 import {
   Box,
   Code,
@@ -13,7 +10,10 @@ import {
   Switch,
   Text,
   TextArea,
-} from 'acyon';
+} from '@aciole/acyon';
+import * as React from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import ts from 'typescript';
 import type { ComponentRoute } from '../../data/componentRoutes';
 import { playgroundConfigs } from '../../data/playgroundConfigs';
 import './styles.css';

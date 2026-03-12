@@ -1,6 +1,6 @@
 {
-  "name": "acyon",
-  "version": "0.0.1",
+  "name": "@aciole/acyon",
+  "version": "0.0.2",
   "description": "Acyon React component library",
   "keywords": [
     "react",

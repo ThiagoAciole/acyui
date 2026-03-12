@@ -8,7 +8,7 @@ import {
   Sidebar,
   TopBar,
   useTheme
-} from 'acyon';
+} from '@aciole/acyon';
 
 import icon from './assets/icon.svg';
 import logoDark from './assets/logo-dark.svg';

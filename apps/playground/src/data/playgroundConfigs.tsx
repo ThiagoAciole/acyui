@@ -1,4 +1,4 @@
-import * as Labs from 'acyon';
+import * as Labs from '@aciole/acyon';
 import * as React from 'react';
 import type { ComponentRoute } from './componentRoutes';
 
@@ -317,7 +317,7 @@ function wrapSnippet(imports: string[], body: string[]) {
       ? body.slice(1, -1)
       : body;
 
-  return [`import { ${imports.join(', ')} } from 'acyon';`, '', ...normalizedBody].join('\n');
+  return [`import { ${imports.join(', ')} } from '@aciole/acyon';`, '', ...normalizedBody].join('\n');
 }
 
 function resolveImports<TProps extends Record<string, unknown>>(
@@ -734,7 +734,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
       { type: 'boolean', name: 'showControls', label: 'Show controls' },
     ],
     render: (props: PaginationPlaygroundProps) => <PaginationPreview {...props} />,
-    generateCode: (props) => `import { useState } from 'react';\nimport { Pagination } from 'acyon';\n\nexport function Example() {\n  const [page, setPage] = useState(${Number(props.currentPage)});\n\n  return (\n    <Pagination\n      currentPage={page}\n      totalPages={${Number(props.totalPages)}}\n      showControls={${Boolean(props.showControls)}}\n      onPageChange={setPage}\n    />\n  );\n}`,
+    generateCode: (props) => `import { useState } from 'react';\nimport { Pagination } from '@aciole/acyon';\n\nexport function Example() {\n  const [page, setPage] = useState(${Number(props.currentPage)});\n\n  return (\n    <Pagination\n      currentPage={page}\n      totalPages={${Number(props.totalPages)}}\n      showControls={${Boolean(props.showControls)}}\n      onPageChange={setPage}\n    />\n  );\n}`,
   } satisfies PlaygroundConfig<PaginationPlaygroundProps>,
   tabs: {
     imports: ['Tabs'],
@@ -789,7 +789,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
       { type: 'boolean', name: 'closeOnOverlayClick', label: 'Close on overlay click' },
     ],
     render: (props: ModalPlaygroundProps) => <ModalPreview {...props} />,
-    generateCode: (props) => `import { useState } from 'react';\nimport { Button, Flex, Modal, Text } from 'acyon';\n\nexport function Example() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <>\n      <Button onClick={() => setOpen(true)}>Abrir modal</Button>\n      <Modal\n        open={open}\n        onClose={() => setOpen(false)}\n        title="${props.title}"\n        description="${props.description}"\n        size="${props.size}"\n        closeOnOverlayClick={${Boolean(props.closeOnOverlayClick)}}\n        footer={(\n          <Flex justify="flex-end" gap="2">\n            <Button variant="ghost" onClick={() => setOpen(false)}>Cancelar</Button>\n            <Button onClick={() => setOpen(false)}>${props.confirmLabel}</Button>\n          </Flex>\n        )}\n      >\n        <Text>${props.body}</Text>\n      </Modal>\n    </>\n  );\n}`,
+    generateCode: (props) => `import { useState } from 'react';\nimport { Button, Flex, Modal, Text } from '@aciole/acyon';\n\nexport function Example() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <>\n      <Button onClick={() => setOpen(true)}>Abrir modal</Button>\n      <Modal\n        open={open}\n        onClose={() => setOpen(false)}\n        title="${props.title}"\n        description="${props.description}"\n        size="${props.size}"\n        closeOnOverlayClick={${Boolean(props.closeOnOverlayClick)}}\n        footer={(\n          <Flex justify="flex-end" gap="2">\n            <Button variant="ghost" onClick={() => setOpen(false)}>Cancelar</Button>\n            <Button onClick={() => setOpen(false)}>${props.confirmLabel}</Button>\n          </Flex>\n        )}\n      >\n        <Text>${props.body}</Text>\n      </Modal>\n    </>\n  );\n}`,
   } satisfies PlaygroundConfig<ModalPlaygroundProps>,
   drawer: {
     imports: ['Button', 'Drawer', 'Text', 'Flex'],
@@ -803,7 +803,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
       { type: 'boolean', name: 'closeOnOverlayClick', label: 'Close on overlay click' },
     ],
     render: (props: DrawerPlaygroundProps) => <DrawerPreview {...props} />,
-    generateCode: (props) => `import { useState } from 'react';\nimport { Button, Drawer, Flex, Text } from 'acyon';\n\nexport function Example() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <>\n      <Button onClick={() => setOpen(true)}>Abrir drawer</Button>\n      <Drawer\n        isOpen={open}\n        onClose={() => setOpen(false)}\n        title="${props.title}"\n        placement="${props.placement}"\n        size="${props.size}"\n        closeOnOverlayClick={${Boolean(props.closeOnOverlayClick)}}\n        footer={(\n          <Flex justify="flex-end" gap="2">\n            <Button variant="ghost" onClick={() => setOpen(false)}>Cancelar</Button>\n            <Button onClick={() => setOpen(false)}>${props.confirmLabel}</Button>\n          </Flex>\n        )}\n      >\n        <Text>${props.body}</Text>\n      </Drawer>\n    </>\n  );\n}`,
+    generateCode: (props) => `import { useState } from 'react';\nimport { Button, Drawer, Flex, Text } from '@aciole/acyon';\n\nexport function Example() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <>\n      <Button onClick={() => setOpen(true)}>Abrir drawer</Button>\n      <Drawer\n        isOpen={open}\n        onClose={() => setOpen(false)}\n        title="${props.title}"\n        placement="${props.placement}"\n        size="${props.size}"\n        closeOnOverlayClick={${Boolean(props.closeOnOverlayClick)}}\n        footer={(\n          <Flex justify="flex-end" gap="2">\n            <Button variant="ghost" onClick={() => setOpen(false)}>Cancelar</Button>\n            <Button onClick={() => setOpen(false)}>${props.confirmLabel}</Button>\n          </Flex>\n        )}\n      >\n        <Text>${props.body}</Text>\n      </Drawer>\n    </>\n  );\n}`,
   } satisfies PlaygroundConfig<DrawerPlaygroundProps>,
   code: {
     imports: ['Code'],

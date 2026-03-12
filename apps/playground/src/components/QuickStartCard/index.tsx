@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Flex, Heading5, Icon, Text } from 'acyon';
+import { Box, Card, CardBody, Flex, Heading5, Icon, Text } from '@aciole/acyon';
 import './styles.css';
 
 interface QuickStartCardProps {
