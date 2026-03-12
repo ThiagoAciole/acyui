@@ -32,10 +32,11 @@
 }
 
 .timeline-item__line {
-  width: 1px;
+  width: 1.5px;
   flex: 1;
-  background: var(--border-subtle);
+  background: var(--border-main);
   min-height: 32px;
+  border-radius: var(--radius-full);
 }
 
 .timeline-item:last-child .timeline-item__line {
