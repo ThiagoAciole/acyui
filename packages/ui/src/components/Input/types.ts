@@ -8,6 +8,7 @@ export interface InputProps extends Omit<React.ComponentPropsWithoutRef<'input'>
     supportText?: string;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
+    clearable?: boolean;
     size?: InputSize;
     full?: boolean;
 }

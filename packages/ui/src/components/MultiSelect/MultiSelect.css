@@ -1,5 +1,6 @@
 .multiselect {
   position: relative;
+  min-width: 240px;
 }
 
 .multiselect--full {
