@@ -1,0 +1,5 @@
+.home-installation-page__steps {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}

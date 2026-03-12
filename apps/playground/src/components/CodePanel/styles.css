@@ -1,0 +1,24 @@
+.home-code-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  background: #111827;
+  box-shadow: var(--shadow-sm);
+}
+
+.home-code-panel__language {
+  display: block;
+  padding: var(--space-3) var(--space-4) 0;
+  color: rgba(255, 255, 255, 0.64);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.home-code-panel__block {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  color: #e5eefc;
+  font-size: 13px;
+  line-height: 1.65;
+}

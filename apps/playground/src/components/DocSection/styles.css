@@ -1,0 +1,12 @@
+.home-doc-section {
+  margin-top: var(--space-10);
+}
+
+.home-doc-section__header {
+  margin-bottom: var(--space-4);
+}
+
+.home-doc-section__body {
+  display: grid;
+  gap: var(--space-4);
+}

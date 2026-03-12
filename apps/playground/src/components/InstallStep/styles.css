@@ -1,0 +1,55 @@
+.home-install-step {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.home-install-step__marker {
+  width: 28px;
+  height: 28px;
+  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: #111827;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+}
+
+.home-install-step__content {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding-left: var(--space-4);
+}
+
+.home-install-step__content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: calc(var(--space-8) * -1);
+  left: 0;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.home-install-step:last-child .home-install-step__content::before {
+  bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .home-install-step {
+    grid-template-columns: 1fr;
+  }
+
+  .home-install-step__content {
+    padding-left: 0;
+  }
+
+  .home-install-step__content::before {
+    display: none;
+  }
+}

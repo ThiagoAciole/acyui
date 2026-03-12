@@ -1,0 +1,11 @@
+.home-overview-page__callout {
+  padding: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface-2);
+  color: var(--text-subtle);
+}
+
+.home-overview-page__quickstart-grid {
+  margin-top: var(--space-4);
+}
