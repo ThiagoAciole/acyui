@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Icon, List, PageHeader, Text } from '@aciole/acyon';
+import { Badge, Box, Card, CardBody, Flex, Grid, Icon, PageHeader, Text } from '@aciole/acyon';
 import { DocSection } from '../../../components/DocSection';
 import { QuickStartCard } from '../../../components/QuickStartCard';
 import { homeContent } from '../content';
@@ -29,13 +29,21 @@ export function OverviewSection() {
       </DocSection>
 
       <DocSection title={overview.benefits.title}>
-        <List variant="checklist">
+        <Grid columns={2} gap="4" className="home-overview-section__benefits-grid">
           {overview.benefits.items.map((item) => (
-            <List.Item key={item.title} description={item.description}>
-              {item.title}
-            </List.Item>
+            <Card key={item.title} className="home-overview-section__benefit-card">
+              <CardBody>
+                <Flex direction="column" gap="3">
+                  <Badge>{item.kicker}</Badge>
+                  <Flex direction="column" gap="2">
+                    <Text weight="semibold">{item.title}</Text>
+                    <Text size="small" color="neutral">{item.description}</Text>
+                  </Flex>
+                </Flex>
+              </CardBody>
+            </Card>
           ))}
-        </List>
+        </Grid>
       </DocSection>
 
       <DocSection title={overview.quickStart.title}>

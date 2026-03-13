@@ -1,5 +1,10 @@
 .home-doc-section {
   margin-top: var(--space-10);
+  padding: var(--space-6);
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 70%, transparent);
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.04);
 }
 
 .home-doc-section__header {

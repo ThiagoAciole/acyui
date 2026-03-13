@@ -1,4 +1,4 @@
-import { Badge, PageHeader } from '@aciole/acyon';
+import { Box, PageHeader } from '@aciole/acyon';
 import type { AnyComponentDefinition } from '../../registry/types';
 
 interface ComponentHeaderProps {
@@ -7,10 +7,12 @@ interface ComponentHeaderProps {
 
 export function ComponentHeader({ definition }: ComponentHeaderProps) {
   return (
-    <PageHeader
-      title={definition.name}
-      description={definition.description}
-      action={<Badge>{definition.category}</Badge>}
-    />
+    <Box className="component-header">
+      <PageHeader
+        title={definition.name}
+        description={definition.description}
+      />
+
+    </Box>
   );
 }

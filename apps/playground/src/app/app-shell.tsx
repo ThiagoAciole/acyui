@@ -5,6 +5,7 @@ import logoDark from '../assets/logo-dark.svg';
 import logoLight from '../assets/logo-light.svg';
 import { sidebarGroups } from '../registry';
 import { homeRoutes } from './router';
+import './app-shell.css';
 
 interface AppShellProps {
   currentRouteId: string;
@@ -24,7 +25,7 @@ export function AppShell({
   const { theme } = useTheme();
 
   return (
-    <Flex style={{ height: '100vh', overflow: 'hidden' }}>
+    <Flex className="playground-shell">
       <Sidebar collapsed={sidebarCollapsed} onToggle={onSidebarToggle}>
         <Sidebar.Header
           icon={<img src={icon} alt="LabsUI Icon" style={{ height: '24px' }} />}
@@ -67,9 +68,11 @@ export function AppShell({
         </Box>
       </Sidebar>
 
-      <Flex direction="column" className="showcase-content">
-        <TopBar sticky themeToggle={true} />
-        {children}
+      <Flex direction="column" className="playground-shell__content">
+        <TopBar className="playground-shell__topbar" sticky themeToggle={true} />
+        <Box className="playground-shell__body">
+          {children}
+        </Box>
       </Flex>
     </Flex>
   );

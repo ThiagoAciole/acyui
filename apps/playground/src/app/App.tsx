@@ -1,27 +1,19 @@
-import { Container } from '@aciole/acyon';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ComponentPage } from '../features/component-docs/component-page';
 import { HomePage } from '../features/home/home-page';
 import { componentDefinitionsById } from '../registry';
 import { AppShell } from './app-shell';
-import { HOME_DEFAULT_ROUTE, navigateTo, resolveRoute } from './router';
-
-function getCurrentRouteId() {
-  const route = window.location.hash.replace(/^#\/?/, '').trim();
-  return route || HOME_DEFAULT_ROUTE;
-}
+import { HOME_DEFAULT_ROUTE, resolveRoute } from './router';
 
 export function App() {
-  const [currentRouteId, setCurrentRouteId] = useState<string>(getCurrentRouteId);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  useEffect(() => {
-    const syncRoute = () => setCurrentRouteId(getCurrentRouteId());
-
-    window.addEventListener('hashchange', syncRoute);
-    return () => window.removeEventListener('hashchange', syncRoute);
-  }, []);
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentRouteId = useMemo(() => {
+    const route = location.pathname.replace(/^\/+/, '').trim();
+    return route || HOME_DEFAULT_ROUTE;
+  }, [location.pathname]);
   const route = resolveRoute(currentRouteId);
 
   return (
@@ -29,15 +21,13 @@ export function App() {
       currentRouteId={currentRouteId}
       sidebarCollapsed={sidebarCollapsed}
       onSidebarToggle={setSidebarCollapsed}
-      onNavigate={navigateTo}
+      onNavigate={(routeId) => navigate(routeId === HOME_DEFAULT_ROUTE ? '/' : `/${routeId}`)}
     >
-      <Container size="full">
-        {route.type === 'home' ? (
-          <HomePage route={route.route.id} />
-        ) : (
-          <ComponentPage definition={componentDefinitionsById[route.componentId]} />
-        )}
-      </Container>
+      {route.type === 'home' ? (
+        <HomePage route={route.route.id} />
+      ) : (
+        <ComponentPage definition={componentDefinitionsById[route.componentId]} />
+      )}
     </AppShell>
   );
 }

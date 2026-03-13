@@ -1,3 +1,60 @@
+.component-page {
+  width: 100%;
+  max-width: none;
+  padding: 32px 32px 0;
+  background: #f4f7fc;
+  min-height: 0;
+  height: 100%;
+}
+
+.component-page__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  height: calc(100vh - 66px);
+  margin: -32px -32px 0;
+  overflow: hidden;
+}
+
+.component-page__main {
+  min-width: 0;
+  min-height: 0;
+  padding: 32px;
+  overflow-y: auto;
+}
+
 .component-page__playground {
-  margin-top: var(--space-6);
+  margin-top: 22px;
+}
+
+.component-header {
+  display: grid;
+  gap: 8px;
+}
+
+[data-theme='dark'] .component-page,
+.theme-dark .component-page,
+[data-theme='dark'] .component-page__main,
+.theme-dark .component-page__main {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 34%),
+    linear-gradient(180deg, #0f172a, #020617);
+}
+
+@media (max-width: 900px) {
+  .component-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .component-page__content {
+    grid-template-columns: 1fr;
+    height: auto;
+    margin: -32px -16px 0;
+    overflow: visible;
+  }
+
+  .component-page__main {
+    padding: 32px 16px;
+    overflow: visible;
+  }
 }

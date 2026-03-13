@@ -16,13 +16,13 @@ const linkDefinition: ComponentDefinition<LinkPlaygroundProps> = defineComponent
   description: 'Links com semantica e estilo consistentes.',
   playground: {
     initialProps: {
-      href: '#/button',
+      href: '/button',
       color: 'primary',
       underline: false,
       children: 'Abrir Button',
     },
     controls: [
-      { type: 'text', name: 'href', label: 'Href', placeholder: '#/button' },
+      { type: 'text', name: 'href', label: 'Href', placeholder: '/button' },
       {
         type: 'select',
         name: 'color',

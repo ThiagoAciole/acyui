@@ -21,7 +21,7 @@ export type AppRoute =
   | { type: 'component'; route: string; componentId: string };
 
 function getHashRoute() {
-  return window.location.hash.replace(/^#\/?/, '').trim();
+  return window.location.pathname.replace(/^\/+/, '').trim();
 }
 
 export function resolveRoute(routeId = getHashRoute()): AppRoute {
@@ -41,5 +41,5 @@ export function resolveRoute(routeId = getHashRoute()): AppRoute {
 }
 
 export function navigateTo(routeId: string) {
-  window.location.hash = routeId === HOME_DEFAULT_ROUTE ? '/' : `/${routeId}`;
+  window.history.pushState({}, '', routeId === HOME_DEFAULT_ROUTE ? '/' : `/${routeId}`);
 }

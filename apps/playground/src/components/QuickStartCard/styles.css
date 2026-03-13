@@ -1,12 +1,14 @@
 .home-quick-start-card {
   text-decoration: none;
   color: inherit;
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 70%, transparent);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .home-quick-start-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--border-subtle));
 }
 
 .home-quick-start-card__icon {

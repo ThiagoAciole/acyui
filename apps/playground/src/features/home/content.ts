@@ -16,23 +16,28 @@ export const homeContent = {
       title: 'Vantagens do Acyon UI',
       items: [
         {
-          title: 'Entrega mais rapida:',
+          kicker: 'Velocity',
+          title: 'Entrega mais rapida',
           description: 'componentes prontos para uso reduzem tempo de implementacao e evitam retrabalho em telas repetitivas.',
         },
         {
-          title: 'Consistencia visual:',
+          kicker: 'Consistency',
+          title: 'Consistencia visual',
           description: 'espacamento, tipografia, estados e feedback seguem o mesmo conjunto de tokens e convencoes.',
         },
         {
-          title: 'Composicao real:',
+          kicker: 'Composition',
+          title: 'Composicao real',
           description: 'os componentes foram pensados para combinacao entre si, sem travar o layout em estruturas fechadas.',
         },
         {
-          title: 'Acessibilidade:',
+          kicker: 'Access',
+          title: 'Acessibilidade',
           description: 'a base considera semantica, estados interativos e navegacao por teclado como requisito e nao como opcional.',
         },
         {
-          title: 'Adocao incremental:',
+          kicker: 'Adoption',
+          title: 'Adocao incremental',
           description: 'voce pode introduzir a biblioteca por tela, fluxo ou modulo, sem depender de uma migracao total.',
         },
       ],
@@ -42,13 +47,13 @@ export const homeContent = {
       description: 'Escolha um dos fluxos abaixo para iniciar rapidamente com a biblioteca.',
       links: [
         {
-          href: '#/home-installation',
+          href: '/home-installation',
           icon: 'download' as const,
           title: 'Instalacao',
           description: 'Adicione o pacote ao projeto e configure a base de estilos e providers.',
         },
         {
-          href: '#/home-usage',
+          href: '/home-usage',
           icon: 'book' as const,
           title: 'Uso',
           description: 'Veja o fluxo recomendado para navegar pela biblioteca e aplicar os componentes.',

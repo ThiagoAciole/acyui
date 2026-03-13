@@ -1,4 +1,4 @@
-import { Box, Code, PageHeader } from '@aciole/acyon';
+import { Box, Code, Flex, Icon, PageHeader, Text } from '@aciole/acyon';
 import { InstallStep } from '../../../components/InstallStep';
 import { homeContent } from '../content';
 
@@ -12,6 +12,15 @@ export function InstallationSection() {
         description={installation.header.description}
         width="84%"
       />
+
+      <Box className="home-installation-section__intro">
+        <Flex align="flex-start" gap="3">
+          <Icon name="sparkles" size={18} />
+          <Text color="neutral">
+            O fluxo abaixo reduz setup manual: instale o pacote, carregue os estilos base e centralize os providers para manter tema e feedback consistentes.
+          </Text>
+        </Flex>
+      </Box>
 
       <Box className="home-installation-section__steps">
         {installation.steps.map((step) => (

@@ -1,4 +1,4 @@
-import { Accordion, Code, Flex, Link, PageHeader, Text } from '@aciole/acyon';
+import { Accordion, Box, Code, Flex, Link, PageHeader, Text } from '@aciole/acyon';
 import { CodePanel } from '../../../components/CodePanel';
 import { DocSection } from '../../../components/DocSection';
 import { homeContent } from '../content';
@@ -14,10 +14,16 @@ export function UsageSection() {
         width="84%"
       />
 
+      <Box className="home-usage-section__intro">
+        <Text color="neutral">
+          A experiencia ideal aqui e iterativa: abra um componente, teste props no playground, compare o codigo gerado e depois leve a composicao para a aplicacao real.
+        </Text>
+      </Box>
+
       <DocSection title={usage.quickStart.title}>
         <Flex direction="column" gap="4">
           <Text>
-            Depois da <Link href="#/home-installation">instalacao</Link>, {usage.quickStart.paragraphs[0].replace('Depois da instalacao, ', '')}
+            Depois da <Link href="/home-installation">instalacao</Link>, {usage.quickStart.paragraphs[0].replace('Depois da instalacao, ', '')}
           </Text>
           <CodePanel
             language="tsx"

@@ -1,65 +1,48 @@
-import { Icon, IconButton } from '@aciole/acyon';
+import { Icon } from '@aciole/acyon';
 import { useEffect, useState } from 'react';
-import type { AnyComponentDefinition } from '../../../registry/types';
-import { PlaygroundCode } from './playground-code';
-import { PlaygroundControls } from './playground-controls';
 import { PlaygroundPreview } from './playground-preview';
-import { usePlaygroundState } from './use-playground-state';
 import './styles.css';
 
-type PlaygroundTab = 'preview' | 'code';
+interface LivePlaygroundProps {
+  category: string;
+  element: React.ReactNode;
+  error: string | null;
+}
 
-export function LivePlayground({ definition }: { definition: AnyComponentDefinition }) {
-  const [activeTab, setActiveTab] = useState<PlaygroundTab>('preview');
-  const { code, controls, preview, propsState, reset, setValue } = usePlaygroundState(definition);
+export function LivePlayground({ category, element, error }: LivePlaygroundProps) {
+  const [previewTone, setPreviewTone] = useState<'grid' | 'solid'>('grid');
 
   useEffect(() => {
-    setActiveTab('preview');
-  }, [definition.id]);
+    setPreviewTone('grid');
+  }, [category]);
 
   return (
-    <div className="component-playground">
-      <div className="component-playground__main">
-        <div className="component-playground__toolbar">
-          <div className="component-playground__tabs">
-            <button
-              type="button"
-              className={`component-playground__tab ${activeTab === 'preview' ? 'component-playground__tab--active' : ''}`}
-              onClick={() => setActiveTab('preview')}
-            >
-              Preview
-            </button>
-            <button
-              type="button"
-              className={`component-playground__tab ${activeTab === 'code' ? 'component-playground__tab--active' : ''}`}
-              onClick={() => setActiveTab('code')}
-            >
-              Code
-            </button>
-          </div>
 
-          <IconButton
-            aria-label="Copiar codigo"
-            icon={<Icon name="copy" size={16} />}
-            onClick={() => navigator.clipboard?.writeText(code)}
-            variant="ghost"
-            size="small"
-          />
+
+    <div className={`component-playground__preview-shell component-playground__preview-shell--${previewTone}`}>
+      <div className="component-playground__canvas-actions">
+        <div className="component-playground__tone-switch">
+          <button
+            type="button"
+            className={`component-playground__tone-button ${previewTone === 'grid' ? 'component-playground__tone-button--active' : ''}`}
+            onClick={() => setPreviewTone('grid')}
+            aria-label="Fundo em grade"
+          >
+            <Icon name="grid" size={14} />
+          </button>
+          <button
+            type="button"
+            className={`component-playground__tone-button ${previewTone === 'solid' ? 'component-playground__tone-button--active' : ''}`}
+            onClick={() => setPreviewTone('solid')}
+            aria-label="Fundo liso"
+          >
+            <Icon name="square" size={14} />
+          </button>
         </div>
-
-        {activeTab === 'preview' ? (
-          <PlaygroundPreview element={preview.element} error={preview.error} />
-        ) : (
-          <PlaygroundCode code={code} />
-        )}
       </div>
 
-      <PlaygroundControls
-        controls={controls}
-        propsState={propsState}
-        onChange={setValue}
-        onReset={reset}
-      />
+      <PlaygroundPreview element={element} error={error} />
     </div>
+
   );
 }
