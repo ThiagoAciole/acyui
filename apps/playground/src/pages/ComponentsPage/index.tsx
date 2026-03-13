@@ -1,10 +1,10 @@
 import { Badge, Box, PageHeader } from '@aciole/acyon';
 import { LivePlayground } from '../../components/LivePlayground';
-import type { ComponentRoute } from '../../data/componentRoutes';
+import type { ComponentMeta } from '../../data/types';
 import './styles.css';
 
 interface ComponentPageProps {
-  route: ComponentRoute;
+  route: ComponentMeta;
 }
 
 export function ComponentPage({ route }: ComponentPageProps) {

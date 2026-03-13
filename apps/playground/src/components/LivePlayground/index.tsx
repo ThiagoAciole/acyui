@@ -14,12 +14,12 @@ import {
 import * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import ts from 'typescript';
-import type { ComponentRoute } from '../../data/componentRoutes';
-import { playgroundConfigs } from '../../data/playgroundConfigs';
+import { playgroundConfigs } from '../../data/registry';
+import type { ComponentMeta } from '../../data/types';
 import './styles.css';
 
 interface LivePlaygroundProps {
-  route: ComponentRoute;
+  route: ComponentMeta;
 }
 
 type PreviewTab = 'preview' | 'code';

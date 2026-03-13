@@ -14,20 +14,32 @@ import icon from './assets/icon.svg';
 import logoDark from './assets/logo-dark.svg';
 import logoLight from './assets/logo-light.svg';
 
-import { componentCategories, componentRoutes } from './data/componentRoutes';
+import { componentCategories } from './data/categories';
+import { componentRoutes } from './data/registry';
+import type { Category } from './data/types';
 import { ComponentPage } from './pages/ComponentsPage';
 import { Home, homeRoutes } from './pages/Home';
 
 const HOME_DEFAULT_ROUTE = 'home-overview';
-const categoryIcons = {
-  Typography: 'type',
-  Form: 'form-input',
-  DataDisplay: 'database',
-  Navigation: 'external-link',
-  Feedback: 'message-square',
-  Overlay: 'panel-left',
-  Layout: 'layout-template',
-} as const;
+const categoryIcons: Record<Category, 'type' | 'form-input' | 'database' | 'external-link' | 'message-square' | 'panel-left' | 'layout-template'> = {
+  typography: 'type',
+  forms: 'form-input',
+  'data-display': 'database',
+  navigation: 'external-link',
+  feedback: 'message-square',
+  overlay: 'panel-left',
+  layout: 'layout-template',
+};
+
+const categoryLabels: Record<Category, string> = {
+  typography: 'Typography',
+  forms: 'Forms',
+  'data-display': 'Data Display',
+  navigation: 'Navigation',
+  feedback: 'Feedback',
+  overlay: 'Overlay',
+  layout: 'Layout',
+};
 
 function getRouteFromHash() {
   const route = window.location.hash.replace(/^#\/?/, '').trim();
@@ -85,7 +97,7 @@ export function App() {
             return (
               <Sidebar.Group
                 key={category}
-                title={category}
+                title={categoryLabels[category]}
                 leftIcon={<Icon name={categoryIcons[category]} size={16} />}
                 defaultOpen
               >
