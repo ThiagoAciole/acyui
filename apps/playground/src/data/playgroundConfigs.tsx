@@ -66,6 +66,7 @@ type ImagePlaygroundProps = { src: string; alt: string; objectFit: 'cover' | 'co
 type ListPlaygroundProps = { variant: 'default' | 'divided' | 'checklist'; activeItem: 'none' | 'first' | 'second' };
 type TablePlaygroundProps = { striped: boolean; hover: boolean; compact: boolean; stickyHeader: boolean };
 type TimelinePlaygroundProps = { firstTitle: string; secondTitle: string; thirdTitle: string };
+type ToastPlaygroundProps = { title: string; description: string; color: 'primary' | 'neutral' | 'success' | 'warning' | 'error'; actionLabel: string };
 type BreadcrumbPlaygroundProps = { separator: '/' | '>' | '-'; currentLabel: string };
 type TopBarPlaygroundProps = { navPosition: 'center' | 'right'; themeToggle: boolean; sticky: boolean; contentInside: boolean };
 type BoxPlaygroundProps = { padding: '0' | '2' | '4' | '6'; rounded: 'none' | 'sm' | 'md' | 'lg' | 'xl'; shadow: 'none' | 'sm' | 'md' | 'lg'; surface: 'default' | 'subtle' | 'inverse'; border: boolean; children: string };
@@ -263,6 +264,22 @@ function DatePickerPreview(props: DatePickerPlaygroundProps) {
       value={value}
       onChange={(event) => setValue(event.target.value)}
     />
+  );
+}
+
+function ToastPreview(props: ToastPlaygroundProps) {
+  const { toast } = Labs.useToast();
+
+  return (
+    <Labs.Button
+      onClick={() => toast({
+        title: props.title,
+        description: props.description || undefined,
+        color: props.color,
+      })}
+    >
+      {props.actionLabel}
+    </Labs.Button>
   );
 }
 
@@ -1039,6 +1056,37 @@ export const playgroundConfigs: PlaygroundConfigMap = {
       ');',
     ]),
   } satisfies PlaygroundConfig<TimelinePlaygroundProps>,
+  toast: {
+    imports: ['Button', 'useToast'],
+    initialProps: { title: 'Salvo com sucesso', description: 'Alteracao aplicada no playground.', color: 'success', actionLabel: 'Disparar toast' },
+    controls: [
+      { type: 'text', name: 'title', label: 'Title', placeholder: 'Salvo com sucesso' },
+      { type: 'textarea', name: 'description', label: 'Description', placeholder: 'Alteracao aplicada no playground.' },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
+      { type: 'text', name: 'actionLabel', label: 'Button label', placeholder: 'Disparar toast' },
+    ],
+    render: (props: ToastPlaygroundProps) => <ToastPreview {...props} />,
+    generateCode: (props) => `import { Button, useToast } from '@aciole/acyon';
+
+function ToastDemo() {
+  const { toast } = useToast();
+
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "${props.title}",
+${props.description ? `          description: "${props.description}",\n` : ''}          color: "${props.color}",
+        })
+      }
+    >
+      ${props.actionLabel}
+    </Button>
+  );
+}
+
+return <ToastDemo />;`,
+  } satisfies PlaygroundConfig<ToastPlaygroundProps>,
   breadcrumb: {
     imports: ['Breadcrumb'],
     initialProps: { separator: '/', currentLabel: 'Breadcrumb' },

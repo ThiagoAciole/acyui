@@ -57,12 +57,8 @@ export function LivePlayground({ route }: LivePlaygroundProps) {
   }, [config, route.id]);
 
   const code = useMemo(() => {
-    if (config) {
-      return config.generateCode(propsState);
-    }
-
-    return route.initialCode;
-  }, [config, propsState, route.initialCode]);
+    return config ? config.generateCode(propsState) : '';
+  }, [config, propsState]);
 
   const result = useMemo(() => {
     try {
