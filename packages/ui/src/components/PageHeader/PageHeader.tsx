@@ -33,7 +33,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
                 )}
                 <div className="page-header__content">
                     <Heading weight="bold">{title}</Heading>
-                    {description && <Text color="subtle" style={{ width: `${width || '100%'}` }}>{description}</Text>}
+                    {description && <Text color="neutral" style={{ width: `${width || '100%'}` }}>{description}</Text>}
                 </div>
             </div>
             {action && <div className="page-header__right">{action}</div>}

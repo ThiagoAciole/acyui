@@ -82,10 +82,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                 <div className="file-upload__content">
                     <div className="file-upload__icon"><Icon name="upload" size={20} /></div>
                     <Text weight="medium">{title}</Text>
-                    <Text size="sm" color="subtle">{description}</Text>
+                    <Text size="sm" color="neutral">{description}</Text>
                 </div>
             </div>
-            {error && <Text size="sm" color="danger">{error}</Text>}
+            {error && <Text size="sm" color="error">{error}</Text>}
             {files.length > 0 && (
                 <ul className="file-upload__list">
                     {files.map((file, index) => (

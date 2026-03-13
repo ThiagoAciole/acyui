@@ -29,11 +29,10 @@
 }
 
 .badge--primary { --badge-color: var(--color-primary); }
-.badge--success { --badge-color: var(--color-success); }
-.badge--danger { --badge-color: var(--color-danger); }
-.badge--warning { --badge-color: var(--color-warning); }
-.badge--info { --badge-color: var(--color-info); }
 .badge--neutral { --badge-color: var(--text-subtle); }
+.badge--success { --badge-color: var(--color-success); }
+.badge--error { --badge-color: var(--color-danger); }
+.badge--warning { --badge-color: var(--color-warning); }
 
 .badge--solid:not(.badge--neutral) {
   background-color: var(--badge-color);

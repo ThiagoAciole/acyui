@@ -3,7 +3,7 @@ import type { ColorValue } from '../../utils/styleTokens';
 
 export type ButtonVariant = 'solid' | 'soft' | 'ghost' | 'outline';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ButtonColor = ColorValue | 'default';
+export type ButtonColor = ColorValue;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariant;

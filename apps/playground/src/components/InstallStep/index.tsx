@@ -15,7 +15,7 @@ export function InstallStep({ step, title, description, code }: InstallStepProps
       <Box className="home-install-step__marker">{step}</Box>
       <Box className="home-install-step__content">
         <Heading3>{title}</Heading3>
-        <Text color="subtle">{description}</Text>
+        <Text color="neutral">{description}</Text>
         {code ? <CodePanel code={code} /> : null}
       </Box>
     </Box>

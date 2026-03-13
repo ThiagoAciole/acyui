@@ -19,9 +19,9 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({ title, description, 
             <div className="timeline-item__content">
                 <div className="timeline-item__header">
                     <Text weight="medium">{title}</Text>
-                    {date && <Text size="sm" color="subtle">{date}</Text>}
+                    {date && <Text size="sm" color="neutral">{date}</Text>}
                 </div>
-                {description && <div className="timeline-item__description"><Text color="subtle">{description}</Text></div>}
+                {description && <div className="timeline-item__description"><Text color="neutral">{description}</Text></div>}
             </div>
         </div>
     );

@@ -77,7 +77,7 @@ function buildCalendarDays(monthDate: Date) {
 }
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
-    ({ label, error, supportText, full = false, className, id, value, defaultValue, onChange, placeholder = 'dd/mm/aaaa', disabled, size: _size, prefix: _prefix, suffix: _suffix, clearable: _clearable, ...props }, ref) => {
+    ({ label, error, hint, full = false, className, id, value, defaultValue, onChange, placeholder = 'dd/mm/aaaa', disabled, size: _size, prefix: _prefix, suffix: _suffix, clearable: _clearable, ...props }, ref) => {
         const inputId = id ?? (label ? `datepicker-${LabelFormater(label)}` : undefined);
         const rootRef = React.useRef<HTMLDivElement | null>(null);
         const fallbackToday = React.useMemo(() => toIsoDate(new Date()), []);
@@ -143,7 +143,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         const calendarDays = buildCalendarDays(viewDate);
 
         return (
-            <FormField label={label} error={error} hint={supportText} full={full} htmlFor={inputId} className={className}>
+            <FormField label={label} error={error} hint={hint} full={full} htmlFor={inputId} className={className}>
                 <div ref={rootRef} className="date-picker">
                     <div
                         className={classNames(

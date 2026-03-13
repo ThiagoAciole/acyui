@@ -215,7 +215,7 @@ export function LivePlayground({ route }: LivePlaygroundProps) {
           ) : (
             <div className="component-playground__empty">
               <Text weight="semibold">Sem propriedades configuradas</Text>
-              <Text size="sm" color="subtle">
+              <Text size="sm" color="neutral">
                 Este componente ainda usa apenas preview e source estatico.
               </Text>
             </div>

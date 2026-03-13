@@ -51,7 +51,7 @@ function ListItem({
             {resolvedStart && <div className="list-item__start">{resolvedStart}</div>}
             <div className="list-item__content">
                 <Text as="span" weight="medium" className="list-item__title">{children}</Text>
-                {description && <Text as="span" size="sm" color="subtle" className="list-item__description">{description}</Text>}
+                {description && <Text as="span" size="sm" color="neutral" className="list-item__description">{description}</Text>}
             </div>
             {endContent && <div className="list-item__end">{endContent}</div>}
         </div>

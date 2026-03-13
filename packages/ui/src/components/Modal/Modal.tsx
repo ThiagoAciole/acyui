@@ -73,7 +73,7 @@ export const Modal: React.FC<ModalProps> = ({
                             icon={<Icon name="close" size={16} />}
                             aria-label="Close modal"
                             variant="ghost"
-                            color="default"
+                            color="neutral"
                             size="sm"
                             onClick={onClose}
                         />

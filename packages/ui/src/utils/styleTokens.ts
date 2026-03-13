@@ -1,14 +1,14 @@
 import type { LooseStringUnion } from '../components/types';
 
-export type TokenColor = 'primary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type TokenColor = 'primary' | 'neutral' | 'success' | 'warning' | 'error';
 export type ColorValue = LooseStringUnion<TokenColor>;
-export type TokenTextColor = LooseStringUnion<TokenColor | 'default' | 'subtle' | 'muted' | 'inverse' | 'disabled'>;
+export type TokenTextColor = LooseStringUnion<TokenColor | 'default' | 'inverse' | 'disabled'>;
 export type TokenIconColor = LooseStringUnion<TokenColor | 'default' | 'disabled'>;
 
 export type TokenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type TokenWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 
-const TOKEN_COLORS: readonly TokenColor[] = ['primary', 'success', 'danger', 'warning', 'info', 'neutral'];
+const TOKEN_COLORS: readonly TokenColor[] = ['primary', 'neutral', 'success', 'warning', 'error'];
 
 export function isTokenColor(color?: string): color is TokenColor {
     if (!color) return false;
@@ -24,6 +24,7 @@ export function colorVar(color?: ColorValue): string | undefined {
     if (!color) return undefined;
     if (!isTokenColor(color)) return color;
     if (color === 'neutral') return 'var(--border-main)';
+    if (color === 'error') return 'var(--color-danger)';
     return `var(--color-${color})`;
 }
 
@@ -31,12 +32,12 @@ export function textColorVar(color?: TokenTextColor): string | undefined {
     if (!color) return 'var(--text-main)';
     if (color === 'default') return 'var(--text-main)';
     if (color === 'disabled') return 'var(--text-muted)';
-    if (color === 'subtle') return 'var(--text-subtle)';
-    if (color === 'muted') return 'var(--text-muted)';
     if (color === 'inverse') return 'var(--text-inverse)';
 
     const normalized = normalizeTokenColor(color as ColorValue);
     if (!normalized) return color;
+    if (normalized === 'neutral') return 'var(--text-muted)';
+    if (normalized === 'error') return 'var(--color-danger)';
     return `var(--color-${normalized})`;
 }
 
@@ -47,6 +48,8 @@ export function iconColorVar(color?: TokenIconColor): string | undefined {
 
     const normalized = normalizeTokenColor(color as ColorValue);
     if (!normalized) return color;
+    if (normalized === 'neutral') return 'var(--text-subtle)';
+    if (normalized === 'error') return 'var(--color-danger)';
     return `var(--color-${normalized})`;
 }
 

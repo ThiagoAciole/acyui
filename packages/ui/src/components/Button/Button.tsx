@@ -23,8 +23,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ...props
     }, ref) => {
         const isDisabled = disabled || loading;
-        const tokenColor = isTokenColor(color) || color === 'default' ? color : undefined;
-        const customColor = !color || tokenColor || color === 'default' ? undefined : colorVar(color);
+        const tokenColor = isTokenColor(color) ? color : undefined;
+        const customColor = !color || tokenColor ? undefined : colorVar(color);
         const buttonStyle = customColor
             ? {
                 ...style,

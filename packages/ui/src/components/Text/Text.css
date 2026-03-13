@@ -11,12 +11,11 @@
 .text--size-xl { font-size: var(--font-size-xl); }
 
 .text--color-default { color: var(--text-main); }
-.text--color-subtle { color: var(--text-subtle); }
-.text--color-muted { color: var(--text-muted); }
 .text--color-inverse { color: var(--text-inverse); }
 .text--color-primary { color: var(--color-primary); }
+.text--color-neutral { color: var(--text-muted); }
 .text--color-success { color: var(--color-success); }
-.text--color-danger { color: var(--color-danger); }
+.text--color-error { color: var(--color-danger); }
 .text--color-warning { color: var(--color-warning); }
 
 .text--weight-normal { font-weight: var(--font-weight-normal); }

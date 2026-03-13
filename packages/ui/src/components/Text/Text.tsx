@@ -17,7 +17,7 @@ export const Text = <TElement extends React.ElementType = 'p'>({
     ...props
 }: TextProps<TElement>) => {
     const Component = (as || 'p') as React.ElementType;
-    const tokenColorClass = isTokenColor(color) || ['default', 'subtle', 'muted', 'inverse'].includes(color)
+    const tokenColorClass = isTokenColor(color) || ['default', 'inverse'].includes(color)
         ? `text--color-${color}`
         : undefined;
 

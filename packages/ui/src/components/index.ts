@@ -25,6 +25,7 @@ export * from './Heading/Heading';
 export * from './Code/Code';
 export * from './Link/Link';
 export * from './Badge/Badge';
+export * from './Alert/Alert';
 export * from './Tag/Tag';
 export * from './Avatar/Avatar';
 export * from './Image/Image';

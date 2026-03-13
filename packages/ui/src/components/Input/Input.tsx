@@ -9,7 +9,7 @@ import type { InputProps } from './types';
 export type { InputProps, InputSize } from './types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ label, error, supportText, prefix, suffix, clearable = false, size = 'md', full = false, className, id, ...props }, ref) => {
+    ({ label, error, hint, prefix, suffix, clearable = false, size = 'md', full = false, className, id, ...props }, ref) => {
         const inputId = id ?? (label ? `input-${LabelFormater(label)}` : undefined);
         const inputRef = React.useRef<HTMLInputElement | null>(null);
         const [, forceRender] = React.useState(0);
@@ -63,7 +63,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ) : suffix;
 
         return (
-            <FormField label={label} error={error} hint={supportText} full={full} htmlFor={inputId} className={className}>
+            <FormField label={label} error={error} hint={hint} full={full} htmlFor={inputId} className={className}>
                 <div className={classNames('input-field', `input-field--${size}`, error && 'input-field--error', props.disabled && 'input-field--disabled')}>
                     {prefix && <span className="input-field__adornment input-field__adornment--prefix">{prefix}</span>}
                     <input
@@ -75,7 +75,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                             Boolean(resolvedSuffix) && 'input-field__input--with-suffix'
                         )}
                         aria-invalid={!!error}
-                        aria-describedby={error ? `${inputId}-error` : supportText ? `${inputId}-supportText` : undefined}
+                        aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
                         {...props}
                         onInput={handleInput}
                     />

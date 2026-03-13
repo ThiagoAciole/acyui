@@ -52,7 +52,7 @@ export function OverviewPage() {
       </DocSection>
 
       <DocSection title="Comece agora">
-        <Text color="subtle">
+        <Text color="neutral">
           Escolha um dos fluxos abaixo para iniciar rapidamente com a biblioteca.
         </Text>
         <Grid columns={2} gap="4" className="home-overview-page__quickstart-grid">

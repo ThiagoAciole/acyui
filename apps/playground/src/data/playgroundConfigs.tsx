@@ -32,14 +32,15 @@ export interface PlaygroundConfig<TProps extends Record<string, unknown> = Recor
 }
 
 type AvatarPlaygroundProps = Pick<Labs.AvatarProps, 'name' | 'src' | 'size' | 'status'>;
+type AlertPlaygroundProps = Pick<Labs.AlertProps, 'variant' | 'title'> & { content: string; actionLabel: string };
 type ButtonPlaygroundProps = Pick<Labs.ButtonProps, 'variant' | 'color' | 'size' | 'full' | 'loading'> & { children: string };
 type BadgePlaygroundProps = Pick<Labs.BadgeProps, 'variant' | 'color' | 'size'> & { children: string };
 type TagPlaygroundProps = Pick<Labs.TagProps, 'variant' | 'color' | 'size' | 'closable'> & { children: string };
 type TextPlaygroundProps = Pick<Labs.TextOwnProps, 'size' | 'color' | 'weight'> & { children: string };
 type HeadingPlaygroundProps = { level: 'Heading' | 'Heading2' | 'Heading3' | 'Heading4' | 'Heading5' | 'Heading6'; weight?: Labs.HeadingWeight; children: string };
 type LinkPlaygroundProps = Pick<Labs.LinkOwnProps, 'color' | 'underline'> & { href: string; children: string };
-type InputPlaygroundProps = Pick<Labs.InputProps, 'label' | 'placeholder' | 'supportText' | 'size' | 'disabled'>;
-type TextAreaPlaygroundProps = Pick<Labs.TextAreaProps, 'label' | 'placeholder' | 'supportText' | 'disabled'>;
+type InputPlaygroundProps = Pick<Labs.InputProps, 'label' | 'placeholder' | 'hint' | 'size' | 'disabled'>;
+type TextAreaPlaygroundProps = Pick<Labs.TextAreaProps, 'label' | 'placeholder' | 'hint' | 'disabled'>;
 type SearchPlaygroundProps = Pick<Labs.SearchProps, 'label' | 'placeholder' | 'loading'>;
 type SelectPlaygroundProps = Pick<Labs.SelectProps, 'label' | 'value' | 'placeholder' | 'disabled'>;
 type CheckboxPlaygroundProps = Pick<Labs.CheckboxProps, 'label' | 'checked' | 'disabled'>;
@@ -47,9 +48,9 @@ type RadioPlaygroundProps = Pick<Labs.RadioProps, 'label' | 'checked' | 'disable
 type SwitchPlaygroundProps = Pick<Labs.SwitchProps, 'label' | 'checked' | 'disabled' | 'size'>;
 type IconButtonPlaygroundProps = Pick<Labs.IconButtonProps, 'variant' | 'color' | 'size' | 'disabled'> & { label: string };
 type EmptyStatePlaygroundProps = { title: string; description: string; actionLabel: string };
-type LoaderPlaygroundProps = Pick<Labs.LoaderProps, 'size' | 'label'> & { color: 'primary' | 'success' | 'warning' | 'danger' };
+type LoaderPlaygroundProps = Pick<Labs.LoaderProps, 'size' | 'label'> & { color: 'primary' | 'neutral' | 'success' | 'warning' | 'error' };
 type SkeletonPlaygroundProps = { width: string; height: string; circle: boolean; animated: boolean };
-type ProgressPlaygroundProps = Pick<Labs.ProgressProps, 'value' | 'size' | 'animated' | 'showValue' | 'label'> & { color: 'primary' | 'success' | 'warning' | 'danger' };
+type ProgressPlaygroundProps = Pick<Labs.ProgressProps, 'value' | 'size' | 'animated' | 'showValue' | 'label'> & { color: 'primary' | 'neutral' | 'success' | 'warning' | 'error' };
 type PaginationPlaygroundProps = { currentPage: string; totalPages: string; showControls: boolean };
 type TabsPlaygroundProps = Pick<Labs.TabsProps, 'variant' | 'size'> & { defaultValue: 'overview' | 'specs' | 'usage' };
 type TooltipPlaygroundProps = { content: string; placement: 'top' | 'bottom' | 'left' | 'right'; buttonLabel: string };
@@ -75,7 +76,7 @@ type GridPlaygroundProps = { columns: '1' | '2' | '3' | '4'; gap: '2' | '4' | '6
 type PageHeaderPlaygroundProps = { title: string; description: string; showBack: boolean };
 type SidebarPlaygroundProps = { collapsed: boolean; groupTitle: string };
 type SpacerPlaygroundProps = { axis: 'horizontal' | 'vertical'; size: string };
-type DatePickerPlaygroundProps = { label: string; placeholder: string; supportText: string; disabled: boolean; value: string };
+type DatePickerPlaygroundProps = { label: string; placeholder: string; hint: string; disabled: boolean; value: string };
 
 function ModalPreview(props: ModalPlaygroundProps) {
   const [open, setOpen] = React.useState(false);
@@ -256,7 +257,7 @@ function DatePickerPreview(props: DatePickerPlaygroundProps) {
     <Labs.DatePicker
       label={props.label}
       placeholder={props.placeholder}
-      supportText={props.supportText}
+      hint={props.hint}
       disabled={props.disabled}
       value={value}
       onChange={(event) => setValue(event.target.value)}
@@ -331,6 +332,36 @@ function resolveImports<TProps extends Record<string, unknown>>(
 type PlaygroundConfigMap = Partial<Record<ComponentRoute['id'], PlaygroundConfig<any>>>;
 
 export const playgroundConfigs: PlaygroundConfigMap = {
+  alert: {
+    imports: ['Alert', 'Button'],
+    initialProps: { variant: 'warning', title: 'Atenção', content: 'Verifique os dados antes de continuar.', actionLabel: 'Revisar' },
+    controls: [
+      { type: 'select', name: 'variant', label: 'Variant', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
+      { type: 'text', name: 'title', label: 'Title', placeholder: 'Atenção' },
+      { type: 'textarea', name: 'content', label: 'Content', placeholder: 'Verifique os dados antes de continuar.' },
+      { type: 'text', name: 'actionLabel', label: 'Action label', placeholder: 'Revisar' },
+    ],
+    render: (props: AlertPlaygroundProps) => (
+      <Labs.Alert
+        variant={props.variant}
+        title={props.title}
+        action={props.actionLabel ? <Labs.Button size="sm" variant="ghost" color={props.variant}>{props.actionLabel}</Labs.Button> : undefined}
+      >
+        {props.content}
+      </Labs.Alert>
+    ),
+    generateCode: (props) => wrapSnippet(['Alert', 'Button'], [
+      'return (',
+      '  <Alert',
+      `    variant="${props.variant}"`,
+      `    title="${props.title}"`,
+      props.actionLabel ? `    action={<Button size="sm" variant="ghost" color="${props.variant}">${props.actionLabel}</Button>}` : undefined,
+      '  >',
+      `    ${props.content}`,
+      '  </Alert>',
+      ');',
+    ].filter(Boolean) as string[]),
+  } satisfies PlaygroundConfig<AlertPlaygroundProps>,
   avatar: {
     imports: ['Avatar'],
     initialProps: {
@@ -382,10 +413,10 @@ export const playgroundConfigs: PlaygroundConfigMap = {
       {
         type: 'select', name: 'color', label: 'Color', options: [
           { label: 'Primary', value: 'primary' },
-          { label: 'Default', value: 'default' },
+          { label: 'Neutral', value: 'neutral' },
           { label: 'Success', value: 'success' },
           { label: 'Warning', value: 'warning' },
-          { label: 'Danger', value: 'danger' },
+          { label: 'Error', value: 'error' },
         ]
       },
       {
@@ -415,7 +446,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { variant: 'soft', color: 'primary', size: 'md', children: 'Beta' },
     controls: [
       { type: 'select', name: 'variant', label: 'Variant', options: [{ label: 'Soft', value: 'soft' }, { label: 'Solid', value: 'solid' }, { label: 'Outline', value: 'outline' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }, { label: 'Default', value: 'default' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'Small', value: 'sm' }, { label: 'Medium', value: 'md' }, { label: 'Large', value: 'lg' }] },
       { type: 'text', name: 'children', label: 'Text', placeholder: 'Beta' },
     ],
@@ -431,7 +462,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { variant: 'soft', color: 'primary', size: 'md', children: 'Design System', closable: false },
     controls: [
       { type: 'select', name: 'variant', label: 'Variant', options: [{ label: 'Soft', value: 'soft' }, { label: 'Outline', value: 'outline' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }, { label: 'Default', value: 'default' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'XS', value: 'xs' }, { label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }, { label: 'XL', value: 'xl' }] },
       { type: 'text', name: 'children', label: 'Text', placeholder: 'Design System' },
       { type: 'boolean', name: 'closable', label: 'Closable' },
@@ -448,7 +479,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { size: 'md', color: 'default', weight: 'normal', children: 'Texto de exemplo para o playground.' },
     controls: [
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'XS', value: 'xs' }, { label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }, { label: 'XL', value: 'xl' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Default', value: 'default' }, { label: 'Subtle', value: 'subtle' }, { label: 'Muted', value: 'muted' }, { label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Default', value: 'default' }, { label: 'Neutral', value: 'neutral' }, { label: 'Inverse', value: 'inverse' }, { label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'select', name: 'weight', label: 'Weight', options: [{ label: 'Normal', value: 'normal' }, { label: 'Medium', value: 'medium' }, { label: 'Semibold', value: 'semibold' }, { label: 'Bold', value: 'bold' }] },
       { type: 'textarea', name: 'children', label: 'Content', placeholder: 'Texto de exemplo' },
     ],
@@ -484,7 +515,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { href: '#/button', color: 'primary', underline: false, children: 'Abrir Button' },
     controls: [
       { type: 'text', name: 'href', label: 'Href', placeholder: '#/button' },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'boolean', name: 'underline', label: 'Underline' },
       { type: 'text', name: 'children', label: 'Text', placeholder: 'Abrir Button' },
     ],
@@ -497,15 +528,15 @@ export const playgroundConfigs: PlaygroundConfigMap = {
   } satisfies PlaygroundConfig<LinkPlaygroundProps>,
   input: {
     imports: ['Input'],
-    initialProps: { label: 'Nome', placeholder: 'Digite aqui', size: 'md', disabled: false, supportText: 'Campo de exemplo' },
+    initialProps: { label: 'Nome', placeholder: 'Digite aqui', size: 'md', disabled: false, hint: 'Campo de exemplo' },
     controls: [
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Nome' },
       { type: 'text', name: 'placeholder', label: 'Placeholder', placeholder: 'Digite aqui' },
-      { type: 'text', name: 'supportText', label: 'Support Text', placeholder: 'Campo de exemplo' },
+      { type: 'text', name: 'hint', label: 'Hint', placeholder: 'Campo de exemplo' },
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }] },
       { type: 'boolean', name: 'disabled', label: 'Disabled' },
     ],
-    render: (props: InputPlaygroundProps) => <Labs.Input label={String(props.label ?? '')} placeholder={String(props.placeholder ?? '')} supportText={String(props.supportText ?? '')} size={props.size} disabled={Boolean(props.disabled)} full />,
+    render: (props: InputPlaygroundProps) => <Labs.Input label={String(props.label ?? '')} placeholder={String(props.placeholder ?? '')} hint={String(props.hint ?? '')} size={props.size} disabled={Boolean(props.disabled)} full />,
     generateCode: (props) => wrapSnippet(['Input'], [
       'return (',
       `  ${buildOpeningTag('Input', props as Record<string, unknown>)} />`,
@@ -514,14 +545,14 @@ export const playgroundConfigs: PlaygroundConfigMap = {
   } satisfies PlaygroundConfig<InputPlaygroundProps>,
   'text-area': {
     imports: ['TextArea'],
-    initialProps: { label: 'Descricao', placeholder: 'Descreva o contexto', supportText: 'Mensagem de apoio', disabled: false },
+    initialProps: { label: 'Descricao', placeholder: 'Descreva o contexto', hint: 'Mensagem de apoio', disabled: false },
     controls: [
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Descricao' },
       { type: 'text', name: 'placeholder', label: 'Placeholder', placeholder: 'Descreva o contexto' },
-      { type: 'text', name: 'supportText', label: 'Support Text', placeholder: 'Mensagem de apoio' },
+      { type: 'text', name: 'hint', label: 'Hint', placeholder: 'Mensagem de apoio' },
       { type: 'boolean', name: 'disabled', label: 'Disabled' },
     ],
-    render: (props: TextAreaPlaygroundProps) => <Labs.TextArea label={String(props.label ?? '')} placeholder={String(props.placeholder ?? '')} supportText={String(props.supportText ?? '')} disabled={Boolean(props.disabled)} full />,
+    render: (props: TextAreaPlaygroundProps) => <Labs.TextArea label={String(props.label ?? '')} placeholder={String(props.placeholder ?? '')} hint={String(props.hint ?? '')} disabled={Boolean(props.disabled)} full />,
     generateCode: (props) => wrapSnippet(['TextArea'], [
       'return (',
       `  ${buildOpeningTag('TextArea', props as Record<string, unknown>)} />`,
@@ -620,7 +651,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { variant: 'solid', color: 'primary', size: 'md', disabled: false, label: 'Enviar' },
     controls: [
       { type: 'select', name: 'variant', label: 'Variant', options: [{ label: 'Solid', value: 'solid' }, { label: 'Soft', value: 'soft' }, { label: 'Ghost', value: 'ghost' }, { label: 'Outline', value: 'outline' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }] },
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Enviar' },
       { type: 'boolean', name: 'disabled', label: 'Disabled' },
@@ -666,7 +697,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     initialProps: { size: 'md', color: 'primary', label: 'Carregando dados' },
     controls: [
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'XS', value: 'xs' }, { label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Default', value: 'default' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Carregando dados' },
     ],
     render: (props: LoaderPlaygroundProps) => <Labs.Loader size={props.size} color={props.color} label={props.label} />,
@@ -713,7 +744,7 @@ export const playgroundConfigs: PlaygroundConfigMap = {
     controls: [
       { type: 'text', name: 'value', label: 'Value', placeholder: '64' },
       { type: 'select', name: 'size', label: 'Size', options: [{ label: 'SM', value: 'sm' }, { label: 'MD', value: 'md' }, { label: 'LG', value: 'lg' }] },
-      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Default', value: 'default' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }] },
+      { type: 'select', name: 'color', label: 'Color', options: [{ label: 'Primary', value: 'primary' }, { label: 'Neutral', value: 'neutral' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Error', value: 'error' }] },
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Progresso' },
       { type: 'boolean', name: 'animated', label: 'Animated' },
       { type: 'boolean', name: 'showValue', label: 'Show value' },
@@ -1208,18 +1239,18 @@ export const playgroundConfigs: PlaygroundConfigMap = {
   } satisfies PlaygroundConfig<SpacerPlaygroundProps>,
   'date-picker': {
     imports: ['DatePicker'],
-    initialProps: { label: 'Data', placeholder: 'dd/mm/aaaa', supportText: 'Selecione uma data', disabled: false, value: '2026-03-12' },
+    initialProps: { label: 'Data', placeholder: 'dd/mm/aaaa', hint: 'Selecione uma data', disabled: false, value: '2026-03-12' },
     controls: [
       { type: 'text', name: 'label', label: 'Label', placeholder: 'Data' },
       { type: 'text', name: 'placeholder', label: 'Placeholder', placeholder: 'dd/mm/aaaa' },
-      { type: 'text', name: 'supportText', label: 'Support text', placeholder: 'Selecione uma data' },
+      { type: 'text', name: 'hint', label: 'Hint', placeholder: 'Selecione uma data' },
       { type: 'text', name: 'value', label: 'Value (ISO)', placeholder: '2026-03-12' },
       { type: 'boolean', name: 'disabled', label: 'Disabled' },
     ],
     render: (props: DatePickerPlaygroundProps) => <DatePickerPreview {...props} />,
     generateCode: (props) => wrapSnippet(['DatePicker'], [
       'return (',
-      `  ${buildOpeningTag('DatePicker', { label: props.label, placeholder: props.placeholder, supportText: props.supportText, value: props.value, disabled: props.disabled })} />`,
+      `  ${buildOpeningTag('DatePicker', { label: props.label, placeholder: props.placeholder, hint: props.hint, value: props.value, disabled: props.disabled })} />`,
       ');',
     ]),
   } satisfies PlaygroundConfig<DatePickerPlaygroundProps>,

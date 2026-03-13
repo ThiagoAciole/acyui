@@ -19,7 +19,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
         <div className={classNames('empty-state', className)} {...props}>
             {icon && <div className="empty-state__icon">{icon}</div>}
             <Heading4>{title}</Heading4>
-            {description && <Text color="subtle">{description}</Text>}
+            {description && <Text color="neutral">{description}</Text>}
             {action && <div className="empty-state__action">{action}</div>}
         </div>
     );

@@ -35,7 +35,8 @@
 
 .toast--success { border-left-color: var(--color-success); }
 .toast--warning { border-left-color: var(--color-warning); }
-.toast--danger { border-left-color: var(--color-danger); }
+.toast--error { border-left-color: var(--color-danger); }
+.toast--neutral { border-left-color: var(--border-strong); }
 
 .toast-icon {
   display: inline-flex;
@@ -52,7 +53,8 @@
 
 .toast--success .toast-icon { color: var(--color-success); }
 .toast--warning .toast-icon { color: var(--color-warning); }
-.toast--danger .toast-icon { color: var(--color-danger); }
+.toast--error .toast-icon { color: var(--color-danger); }
+.toast--neutral .toast-icon { color: var(--text-subtle); }
 
 .toast-content {
   flex: 1;

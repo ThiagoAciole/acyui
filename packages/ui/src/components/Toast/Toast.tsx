@@ -13,7 +13,8 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 const COLOR_ICONS: Record<string, React.ReactNode> = {
     success: <Icon name="check" size={16} />,
     warning: <Icon name="warning" size={16} />,
-    danger: <Icon name="close" size={16} />,
+    error: <Icon name="close" size={16} />,
+    neutral: <Icon name="info" size={16} />,
     primary: <Icon name="info" size={16} />
 };
 

@@ -32,10 +32,10 @@
 
 /* Variantes dinâmicas baseadas em --color */
 .btn--color-primary { --btn-base: var(--color-primary); --btn-bg: var(--color-primary); --btn-text: var(--text-inverse); }
+.btn--color-neutral { --btn-base: var(--border-strong); --btn-bg: var(--bg-surface-2); --btn-text: var(--text-main); --btn-fg: var(--text-main); }
 .btn--color-success { --btn-base: var(--color-success); --btn-bg: var(--color-success); --btn-text: var(--text-inverse); }
-.btn--color-danger  { --btn-base: var(--color-danger);  --btn-bg: var(--color-danger);  --btn-text: var(--text-inverse); }
+.btn--color-error { --btn-base: var(--color-danger); --btn-bg: var(--color-danger); --btn-text: var(--text-inverse); }
 .btn--color-warning { --btn-base: var(--color-warning); --btn-bg: var(--color-warning); --btn-text: var(--text-inverse); }
-.btn--color-default { --btn-base: var(--border-strong);  --btn-bg: var(--bg-surface-2); --btn-text: var(--text-main); }
 
 /* Solid */
 .btn--solid {
@@ -51,7 +51,7 @@
 /* Soft */
 .btn--soft {
   background-color: color-mix(in srgb, var(--btn-base), transparent 85%);
-  color: var(--btn-base);
+  color: var(--btn-fg, var(--btn-base));
 }
 
 .btn--soft:hover {
@@ -62,18 +62,18 @@
 .btn--outline {
   background-color: transparent;
   border-color: var(--btn-base);
-  color: var(--btn-base);
+  color: var(--btn-fg, var(--btn-base));
 }
 
 .btn--outline:hover {
   background-color: color-mix(in srgb, var(--btn-base), transparent 85%);
-  color: var(--btn-base);
+  color: var(--btn-fg, var(--btn-base));
 }
 
 /* Ghost */
 .btn--ghost {
   background-color: transparent;
-  color: var(--btn-base);
+  color: var(--btn-fg, var(--btn-base));
 }
 
 .btn--ghost:hover {

@@ -25,12 +25,12 @@ export const FormField: React.FC<FormFieldProps> = ({
             )}
             {children}
             {error && (
-                <Text as="span" color="danger" size="sm" className="form-field-message" role="alert">
+                <Text as="span" color="error" size="sm" className="form-field-message" role="alert">
                     {error}
                 </Text>
             )}
             {!error && hint && (
-                <Text as="span" color="subtle" size="sm" className="form-field-message">
+                <Text as="span" color="neutral" size="sm" className="form-field-message">
                     {hint}
                 </Text>
             )}

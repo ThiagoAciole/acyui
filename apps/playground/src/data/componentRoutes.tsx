@@ -54,6 +54,23 @@ export const componentRoutes: ComponentRoute[] = [
     ]),
   },
   {
+    id: 'alert',
+    name: 'Alert',
+    category: 'Feedback',
+    icon: 'alert-triangle',
+    description: 'Mensagens contextuais para destaque de estados e informacoes.',
+    initialCode: jsxSnippet(['Alert'], [
+      'return (',
+      '  <Alert',
+      '    variant="warning"',
+      '    title="Atenção"',
+      '  >',
+      '    Verifique os dados antes de continuar.',
+      '  </Alert>',
+      ');',
+    ]),
+  },
+  {
     id: 'avatar',
     name: 'Avatar',
     category: 'DataDisplay',
