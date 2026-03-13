@@ -2,20 +2,11 @@
   position: relative;
   overflow: hidden;
   background-color: var(--bg-skeleton);
-  border-radius: var(--radius-sm);
-}
-
-.skeleton--text {
-  height: 1em;
-  width: 100%;
-}
-
-.skeleton--circular {
-  border-radius: 50%;
-}
-
-.skeleton--rectangular {
   border-radius: var(--radius-md);
+}
+
+.skeleton--rounded {
+  border-radius: 9999px;
 }
 
 .skeleton--animated::after {

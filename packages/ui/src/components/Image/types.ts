@@ -1,7 +1,7 @@
 import type * as React from 'react';
 
-export type ImageObjectFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
-export type ImageRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
+export type ImageObjectFit = 'cover' | 'contain' | 'fill' | 'none' | 'scaleDown';
+export type ImageRadius = 'small' | 'medium' | 'large' | 'full';
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     objectFit?: ImageObjectFit;

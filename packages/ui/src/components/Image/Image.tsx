@@ -10,7 +10,7 @@ export const Image: React.FC<ImageProps> = ({
     src,
     alt,
     objectFit = 'cover',
-    radius = 'md',
+    radius = 'medium',
     className,
     style,
     fallback,
@@ -23,7 +23,11 @@ export const Image: React.FC<ImageProps> = ({
 
     return (
         <div className={classNames('image-wrapper', className)} style={style}>
-            {!loaded && !error && <Skeleton className={classNames('image-skeleton', `image-radius--${radius}`)} style={{ width: '100%', height: '100%' }} />}
+            {!loaded && !error && (
+                <div className={classNames('image-skeleton', `image-radius--${radius}`)}>
+                    <Skeleton width="100%" height="100%" />
+                </div>
+            )}
             <img
                 src={src}
                 alt={alt}

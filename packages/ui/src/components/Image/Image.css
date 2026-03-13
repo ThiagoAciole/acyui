@@ -19,15 +19,19 @@
 .image-fit--contain { object-fit: contain; }
 .image-fit--fill { object-fit: fill; }
 .image-fit--none { object-fit: none; }
-.image-fit--scale-down { object-fit: scale-down; }
+.image-fit--scaleDown { object-fit: scale-down; }
 
-.image-radius--none { border-radius: var(--radius-none); }
-.image-radius--sm { border-radius: var(--radius-sm); }
-.image-radius--md { border-radius: var(--radius-md); }
-.image-radius--lg { border-radius: var(--radius-lg); }
-.image-radius--full { border-radius: var(--radius-full); }
+.image-radius--small { border-radius: var(--radius-sm); }
+.image-radius--medium { border-radius: var(--radius-md); }
+.image-radius--large { border-radius: var(--radius-lg); }
+.image-radius--full { border-radius: 9999px; }
 
 .image-skeleton {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+}
+
+.image-skeleton .skeleton {
+  border-radius: inherit;
 }

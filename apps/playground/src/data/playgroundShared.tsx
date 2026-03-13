@@ -166,28 +166,45 @@ export function MultiSelectPreview(props: {
   label: string;
   placeholder: string;
   disabled: boolean;
-  selection: 'none' | 'react' | 'react-vue';
 }) {
-  const selection = props.selection === 'none' ? [] : props.selection === 'react' ? ['react'] : ['react', 'vue'];
-  const [value, setValue] = React.useState<string[]>(selection);
+  const options = React.useMemo(
+    () => [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Svelte', value: 'svelte' },
+    ],
+    [],
+  );
+  const [value, setValue] = React.useState<string[]>([]);
+  const selectedOptions = React.useMemo(
+    () => options.filter((option) => value.includes(option.value)),
+    [options, value],
+  );
 
   React.useEffect(() => {
-    setValue(selection);
-  }, [props.selection]);
+    setValue([]);
+  }, [props.label, props.placeholder]);
 
   return (
-    <Labs.MultiSelect
-      label={props.label}
-      placeholder={props.placeholder}
-      disabled={Boolean(props.disabled)}
-      value={value}
-      onChange={setValue}
-      options={[
-        { label: 'React', value: 'react' },
-        { label: 'Vue', value: 'vue' },
-        { label: 'Svelte', value: 'svelte' },
-      ]}
-    />
+    <Labs.Box style={{ width: 320, display: 'grid', gap: 24, alignItems: 'start' }}>
+      <Labs.Box style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {selectedOptions.map((option) => (
+          <Labs.Badge key={option.value} variant="outline">
+            {option.label}
+          </Labs.Badge>
+        ))}
+      </Labs.Box>
+      <Labs.MultiSelect
+        label={props.label}
+        placeholder={props.placeholder}
+        disabled={Boolean(props.disabled)}
+        value={value}
+        onChange={setValue}
+        options={options}
+        full
+      />
+
+    </Labs.Box>
   );
 }
 
