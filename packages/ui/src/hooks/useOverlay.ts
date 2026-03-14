@@ -7,6 +7,20 @@ export interface UseOverlayOptions {
     lockScroll?: boolean;
 }
 
+let scrollLockCount = 0;
+
+function acquireScrollLock() {
+    scrollLockCount++;
+    document.body.classList.add('acyon-scroll-lock');
+}
+
+function releaseScrollLock() {
+    scrollLockCount = Math.max(0, scrollLockCount - 1);
+    if (scrollLockCount === 0) {
+        document.body.classList.remove('acyon-scroll-lock');
+    }
+}
+
 export function useOverlay({
     isOpen,
     onClose,
@@ -16,15 +30,10 @@ export function useOverlay({
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!isOpen) return;
+        if (!isOpen || !lockScroll) return;
 
-        if (lockScroll) {
-            const originalStyle = window.getComputedStyle(document.body).overflow;
-            document.body.style.overflow = 'hidden';
-            return () => {
-                document.body.style.overflow = originalStyle;
-            };
-        }
+        acquireScrollLock();
+        return releaseScrollLock;
     }, [isOpen, lockScroll]);
 
     useEffect(() => {

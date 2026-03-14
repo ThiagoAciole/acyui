@@ -22,7 +22,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(({
     const inputId = id ?? `radio-${generatedId}`;
 
     return (
-        <FormField full className={className} htmlFor={inputId}>
+        <FormField full className={className} htmlFor={inputId} error={error}>
             <label className={classNames('radio', disabled && 'radio--disabled', error && 'radio--error')} style={{ ['--radio-color' as string]: colorVar(color), ...(style ?? {}) }}>
                 <span className="radio__input-container">
                     <input ref={ref} id={inputId} type="radio" className="radio__input" disabled={disabled} {...props} />

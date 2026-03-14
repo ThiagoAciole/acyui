@@ -94,3 +94,8 @@ ul, ol {
   background-color: var(--color-primary-soft);
   color: var(--color-primary);
 }
+
+/* Overlay scroll lock */
+body.acyon-scroll-lock {
+  overflow: hidden;
+}

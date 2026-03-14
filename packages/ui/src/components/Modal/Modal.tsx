@@ -1,10 +1,11 @@
 import './Modal.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { classNames } from '../../utils/classNames';
 import { IconButton } from '../IconButton/IconButton';
 import { Heading2 } from '../Heading/Heading';
 import { Icon } from '../../icons';
+import { useOverlay } from '../../hooks/useOverlay';
 import type { ModalProps } from './types';
 
 export type { ModalProps, ModalSize } from './types';
@@ -22,22 +23,11 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
     const [mounted, setMounted] = useState(false);
 
+    useOverlay({ isOpen: open, onClose, closeOnEscape: true, lockScroll: true });
+
     useEffect(() => {
-        if (!open) return;
-
-        const onKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
-        };
-
-        document.addEventListener('keydown', onKeyDown);
-        document.body.style.overflow = 'hidden';
-        setMounted(true);
-
-        return () => {
-            document.removeEventListener('keydown', onKeyDown);
-            document.body.style.overflow = '';
-        };
-    }, [open, onClose]);
+        if (open) setMounted(true);
+    }, [open]);
 
     if (!open || !mounted) return null;
 

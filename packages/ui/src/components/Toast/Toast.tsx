@@ -68,7 +68,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
     }, []);
 
     const toast = useCallback((data: Omit<ToastData, 'id'>) => {
-        const id = `toast-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        const id = crypto.randomUUID();
         setToasts((prev) => [...prev.slice(-(maxToasts - 1)), { ...data, id }]);
     }, [maxToasts]);
 

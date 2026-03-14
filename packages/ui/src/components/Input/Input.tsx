@@ -12,9 +12,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ label, error, hint, prefix, suffix, clearable = false, size = 'medium', full = false, className, id, ...props }, ref) => {
         const inputId = id ?? (label ? `input-${LabelFormater(label)}` : undefined);
         const inputRef = React.useRef<HTMLInputElement | null>(null);
-        const [, forceRender] = React.useState(0);
         const isControlled = props.value !== undefined;
-        const hasValue = String(isControlled ? props.value ?? '' : props.defaultValue ?? inputRef.current?.value ?? '').length > 0;
+        const [uncontrolledHasValue, setUncontrolledHasValue] = React.useState(
+            Boolean(props.defaultValue ?? '')
+        );
+        const hasValue = isControlled
+            ? String(props.value ?? '').length > 0
+            : uncontrolledHasValue;
 
         const setRefs = (node: HTMLInputElement | null) => {
             inputRef.current = node;
@@ -39,14 +43,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptor?.set?.call(node, '');
             node.dispatchEvent(new Event('input', { bubbles: true }));
             node.dispatchEvent(new Event('change', { bubbles: true }));
-            forceRender((current) => current + 1);
+            if (!isControlled) setUncontrolledHasValue(false);
             node.focus();
         };
 
         const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
             props.onInput?.(event);
             if (!isControlled) {
-                forceRender((current) => current + 1);
+                setUncontrolledHasValue((event.target as HTMLInputElement).value.length > 0);
             }
         };
 

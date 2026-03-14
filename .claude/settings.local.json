@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /c/Source/AcyonUI log --oneline -10)",
+      "Bash(ls /c/Source/AcyonUI/apps/playground/src/registry/components/*/*.definition.tsx)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(sed 's/.definition.tsx//')",
+      "Bash(for comp in Checkbox FormField)",
+      "Bash(do echo \"$comp\")",
+      "Bash(done)",
+      "Bash(xargs wc -l)",
+      "Bash(wc -l /c/Source/AcyonUI/apps/playground/src/features/component-docs/*.css)",
+      "Bash(find /c/Source/AcyonUI -name \"package.json\" -not -path \"*/node_modules/*\" -exec head -30 {} +)"
+    ]
+  }
+}

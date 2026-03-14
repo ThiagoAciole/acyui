@@ -5,6 +5,7 @@ import { classNames } from '../../utils/classNames';
 import { IconButton } from '../IconButton/IconButton';
 import { Heading2 } from '../Heading/Heading';
 import { Icon } from '../../icons';
+import { useOverlay } from '../../hooks/useOverlay';
 import type { DrawerProps } from './types';
 
 export type { DrawerPlacement, DrawerProps, DrawerSize } from './types';
@@ -22,17 +23,11 @@ export const Drawer: React.FC<DrawerProps> = ({
 }) => {
     const [mounted, setMounted] = useState(false);
 
+    useOverlay({ isOpen, onClose, closeOnEscape: true, lockScroll: true });
+
     useEffect(() => {
         setMounted(true);
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen]);
+    }, []);
 
     if (!mounted) return null;
 

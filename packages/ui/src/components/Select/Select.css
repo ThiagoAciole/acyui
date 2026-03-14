@@ -125,6 +125,12 @@
   cursor: not-allowed;
 }
 
+.select__option--focused:not(.select__option--disabled) {
+  background: var(--bg-surface-2);
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
 .select__option-check {
   flex-shrink: 0;
 }

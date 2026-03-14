@@ -4,6 +4,6 @@ import type { ColorValue } from '../../utils/styleTokens';
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
     label?: string;
     description?: string;
-    error?: boolean;
+    error?: string;
     color?: ColorValue;
 }

@@ -24,9 +24,26 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
     }, ref) => {
         const generatedId = useId();
         const rootRef = useRef<HTMLDivElement>(null);
+        const listRef = useRef<HTMLUListElement>(null);
         const [isOpen, setIsOpen] = useState(false);
         const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
+        const [focusedIndex, setFocusedIndex] = useState(-1);
         const selectedValues = value ?? internalValue;
+
+        useEffect(() => {
+            if (!isOpen) {
+                setFocusedIndex(-1);
+                return;
+            }
+            setFocusedIndex(0);
+        }, [isOpen]);
+
+        useEffect(() => {
+            if (!isOpen || focusedIndex < 0) return;
+            const list = listRef.current;
+            if (!list) return;
+            (list.children[focusedIndex] as HTMLElement | undefined)?.scrollIntoView({ block: 'nearest' });
+        }, [focusedIndex, isOpen]);
 
         useEffect(() => {
             const handleClickOutside = (event: MouseEvent) => {
@@ -52,6 +69,16 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
             onChange?.(nextValue);
         };
 
+        const getNextEnabledIndex = (startIndex: number, direction: 1 | -1) => {
+            const len = options.length;
+            let i = startIndex;
+            for (let count = 0; count < len; count++) {
+                i = ((i + direction) + len) % len;
+                if (!options[i]?.disabled) return i;
+            }
+            return startIndex;
+        };
+
         const toggleValue = (optionValue: string, optionDisabled?: boolean) => {
             if (optionDisabled) return;
 
@@ -63,6 +90,56 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
             commitChange([...selectedValues, optionValue]);
         };
 
+        const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+            if (disabled) return;
+
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                if (isOpen && focusedIndex >= 0 && options[focusedIndex]) {
+                    toggleValue(options[focusedIndex].value, options[focusedIndex].disabled);
+                } else {
+                    setIsOpen((current) => !current);
+                }
+            }
+
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                setIsOpen(false);
+            }
+
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                if (!isOpen) {
+                    setIsOpen(true);
+                } else {
+                    setFocusedIndex(prev => getNextEnabledIndex(prev < 0 ? -1 : prev, 1));
+                }
+            }
+
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                if (isOpen) {
+                    setFocusedIndex(prev => getNextEnabledIndex(prev < 0 ? options.length : prev, -1));
+                }
+            }
+
+            if (event.key === 'Home' && isOpen) {
+                event.preventDefault();
+                const first = options.findIndex(o => !o.disabled);
+                if (first >= 0) setFocusedIndex(first);
+            }
+
+            if (event.key === 'End' && isOpen) {
+                event.preventDefault();
+                const last = options.map((o, i) => (!o.disabled ? i : -1)).filter(i => i >= 0).at(-1);
+                if (last !== undefined) setFocusedIndex(last);
+            }
+        };
+
+        const activedescendant = isOpen && focusedIndex >= 0
+            ? `${generatedId}-option-${focusedIndex}`
+            : undefined;
+
         return (
             <FormField label={label} error={error} hint={supportText} full={full} className={className} htmlFor={generatedId}>
                 <div ref={rootRef} className={classNames('multiselect', full && 'multiselect--full')}>
@@ -73,6 +150,7 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
                         aria-expanded={isOpen}
                         aria-controls={`${generatedId}-listbox`}
                         aria-haspopup="listbox"
+                        aria-activedescendant={activedescendant}
                         tabIndex={disabled ? -1 : 0}
                         className={classNames(
                             'multiselect__trigger',
@@ -81,16 +159,7 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
                             disabled && 'multiselect__trigger--disabled'
                         )}
                         onClick={() => !disabled && setIsOpen((current) => !current)}
-                        onKeyDown={(event) => {
-                            if (disabled) return;
-                            if (event.key === 'Enter' || event.key === ' ') {
-                                event.preventDefault();
-                                setIsOpen((current) => !current);
-                            }
-                            if (event.key === 'Escape') {
-                                setIsOpen(false);
-                            }
-                        }}
+                        onKeyDown={handleKeyDown}
                         {...props}
                     >
                         <div className="multiselect__values">
@@ -117,19 +186,23 @@ export const MultiSelect = React.forwardRef<HTMLDivElement, MultiSelectProps>(
                     </div>
 
                     {isOpen && (
-                        <ul id={`${generatedId}-listbox`} className="multiselect__menu" role="listbox" aria-multiselectable="true">
-                            {options.length > 0 ? options.map((option) => {
+                        <ul ref={listRef} id={`${generatedId}-listbox`} className="multiselect__menu" role="listbox" aria-multiselectable="true">
+                            {options.length > 0 ? options.map((option, index) => {
                                 const isSelected = selectedValues.includes(option.value);
+                                const isFocused = focusedIndex === index;
 
                                 return (
                                     <li
                                         key={option.value}
+                                        id={`${generatedId}-option-${index}`}
                                         role="option"
                                         aria-selected={isSelected}
+                                        aria-disabled={option.disabled}
                                         className={classNames(
                                             'multiselect__option',
                                             isSelected && 'multiselect__option--selected',
-                                            option.disabled && 'multiselect__option--disabled'
+                                            option.disabled && 'multiselect__option--disabled',
+                                            isFocused && 'multiselect__option--focused'
                                         )}
                                         onClick={() => toggleValue(option.value, option.disabled)}
                                     >

@@ -77,7 +77,7 @@ export const homeContent = {
         step: 2,
         title: 'Importe os estilos base',
         description: 'Garanta que os tokens e estilos globais sejam carregados no ponto de entrada da aplicacao.',
-        code: "import 'acyon/style.css';",
+        code: "import '@aciole/acyon/styles';",
       },
       {
         step: 3,
