@@ -37,25 +37,25 @@ export const Table: React.FC<TableProps> = ({
     );
 };
 
-export const Thead: React.FC<React.HTMLAttributes<HTMLTableSectionElement>> = (props) => (
+export const Thead = React.memo<React.HTMLAttributes<HTMLTableSectionElement>>((props) => (
     <thead {...props} />
-);
+));
 
-export const Tbody: React.FC<React.HTMLAttributes<HTMLTableSectionElement>> = (props) => (
+export const Tbody = React.memo<React.HTMLAttributes<HTMLTableSectionElement>>((props) => (
     <tbody {...props} />
-);
+));
 
-export const Tr: React.FC<React.HTMLAttributes<HTMLTableRowElement>> = (props) => (
+export const Tr = React.memo<React.HTMLAttributes<HTMLTableRowElement>>((props) => (
     <tr {...props} />
-);
+));
 
-export const Th: React.FC<React.ThHTMLAttributes<HTMLTableCellElement>> = (props) => (
+export const Th = React.memo<React.ThHTMLAttributes<HTMLTableCellElement>>((props) => (
     <th {...props} />
-);
+));
 
-export const Td: React.FC<React.TdHTMLAttributes<HTMLTableCellElement>> = (props) => (
+export const Td = React.memo<React.TdHTMLAttributes<HTMLTableCellElement>>((props) => (
     <td {...props} />
-);
+));
 
 Table.displayName = 'Table';
 Thead.displayName = 'Thead';

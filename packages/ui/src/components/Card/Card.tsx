@@ -44,10 +44,10 @@ export function CardHeader({ title, description, icon, action, children, classNa
     );
 }
 
-export function CardBody({ children, className, ...props }: CardSectionProps) {
+export const CardBody = React.memo(function CardBody({ children, className, ...props }: CardSectionProps) {
     return <div className={classNames('card-body', className)} {...props}>{children}</div>;
-}
+});
 
-export function CardFooter({ children, className, ...props }: CardSectionProps) {
+export const CardFooter = React.memo(function CardFooter({ children, className, ...props }: CardSectionProps) {
     return <div className={classNames('card-footer', className)} {...props}>{children}</div>;
-}
+});

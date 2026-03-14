@@ -1,12 +1,15 @@
 
 .icon-btn {
-  padding: 0 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   border-radius: var(--radius-md);
   min-width: 0;
+}
+
+.btn.icon-btn {
+  padding: 0;
 }
 
 .icon-btn:disabled {

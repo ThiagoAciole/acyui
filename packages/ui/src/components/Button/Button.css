@@ -45,7 +45,7 @@
 
 .btn--solid:hover {
   filter: brightness(1.1);
-  box-shadow: 0 4px 12px rgba(var(--btn-bg), 0.2);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--btn-bg), transparent 80%);
 }
 
 /* Soft */
