@@ -19,7 +19,10 @@
       "import": "./dist/acyui.es.js",
       "require": "./dist/acyui.cjs.js"
     },
-    "./styles": "./dist/acyui.css",
+    "./styles": {
+      "types": "./dist/acyui.css.d.ts",
+      "default": "./dist/acyui.css"
+    },
     "./dist/acyui.css": "./dist/acyui.css",
     "./package.json": "./package.json"
   },

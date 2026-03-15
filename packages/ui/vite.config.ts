@@ -4,6 +4,7 @@ import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { writeFileSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,6 +20,12 @@ export default defineConfig({
       outDir: 'dist',
       insertTypesEntry: true,
     }),
+    {
+      name: 'generate-css-types',
+      closeBundle() {
+        writeFileSync('dist/acyui.css.d.ts', 'export {};\n');
+      },
+    },
   ],
   build: {
     lib: {
