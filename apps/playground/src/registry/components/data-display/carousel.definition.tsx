@@ -24,8 +24,6 @@ function Slide({ src }: { src: string }) {
       style={{ display: 'block' }}
       objectFit="cover"
       radius="large"
-      width={560}
-      height={315}
     />
   );
 }
