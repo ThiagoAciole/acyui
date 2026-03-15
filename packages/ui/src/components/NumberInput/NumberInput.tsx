@@ -1,8 +1,8 @@
-import './NumberInput.css';
 import React from 'react';
+import { Icon } from '../../icons';
 import { classNames } from '../../utils';
 import { FormField } from '../FormField/FormField';
-import { Icon } from '../../icons';
+import './NumberInput.css';
 import type { NumberInputProps } from './types';
 
 export type { NumberInputProps, NumberInputVariant } from './types';
@@ -10,6 +10,27 @@ export type { NumberInputProps, NumberInputVariant } from './types';
 function clamp(value: number, min?: number, max?: number): number {
     if (min !== undefined && value < min) return min;
     if (max !== undefined && value > max) return max;
+    return value;
+}
+
+function sanitizeNumberInput(raw: string): string {
+    let value = raw.replace(',', '.');
+
+    value = value.replace(/[^\d.-]/g, '');
+
+    const isNegative = value.startsWith('-');
+    value = value.replace(/-/g, '');
+    if (isNegative) value = `-${value}`;
+
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = `${parts[0]}.${parts.slice(1).join('')}`;
+    }
+
+    if (value.includes('-')) {
+        value = value[0] === '-' ? `-${value.slice(1).replace(/-/g, '')}` : value.replace(/-/g, '');
+    }
+
     return value;
 }
 
@@ -42,7 +63,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         const isControlled = value !== undefined;
         const [internalValue, setInternalValue] = React.useState<number | undefined>(defaultValue);
         const [inputText, setInputText] = React.useState<string>(
-            String(isControlled ? (value ?? '') : (defaultValue ?? '')),
+            String(isControlled ? value ?? '' : defaultValue ?? ''),
         );
 
         const currentValue = isControlled ? value : internalValue;
@@ -54,24 +75,28 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         }, [isControlled, value]);
 
         const commit = (raw: string) => {
-            const trimmed = raw.trim();
-            if (trimmed === '' || trimmed === '-') {
+            const sanitized = sanitizeNumberInput(raw).trim();
+
+            if (sanitized === '' || sanitized === '-' || sanitized === '.' || sanitized === '-.') {
+                setInputText('');
                 if (!isControlled) setInternalValue(undefined);
                 onChange?.(undefined);
                 return;
             }
 
-            const parsed = Number(trimmed);
+            const parsed = Number(sanitized);
             if (!Number.isFinite(parsed)) return;
 
             const clamped = clamp(parsed, min, max);
+
             setInputText(String(clamped));
             if (!isControlled) setInternalValue(clamped);
             onChange?.(clamped);
         };
 
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            setInputText(event.target.value);
+            const sanitized = sanitizeNumberInput(event.target.value);
+            setInputText(sanitized);
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -80,9 +105,70 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         };
 
         const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+            const allowedControlKeys = [
+                'Backspace',
+                'Delete',
+                'Tab',
+                'Escape',
+                'Enter',
+                'ArrowLeft',
+                'ArrowRight',
+                'ArrowUp',
+                'ArrowDown',
+                'Home',
+                'End',
+            ];
+
+            const isShortcut =
+                event.ctrlKey || event.metaKey || event.altKey;
+
             if (event.key === 'Enter') {
                 commit((event.target as HTMLInputElement).value);
+                props.onKeyDown?.(event);
+                return;
             }
+
+            if (isShortcut || allowedControlKeys.includes(event.key)) {
+                props.onKeyDown?.(event);
+                return;
+            }
+
+            const input = event.currentTarget;
+            const current = input.value;
+            const selectionStart = input.selectionStart ?? current.length;
+            const selectionEnd = input.selectionEnd ?? current.length;
+
+            const hasMinus = current.includes('-');
+            const hasDot = current.includes('.');
+
+            const isDigit = /^\d$/.test(event.key);
+            const isMinus = event.key === '-';
+            const isDot = event.key === '.' || event.key === ',';
+
+            if (isDigit) {
+                props.onKeyDown?.(event);
+                return;
+            }
+
+            if (isMinus) {
+                const insertingAtStart = selectionStart === 0;
+                const replacingExistingMinus =
+                    hasMinus && selectionStart === 0 && selectionEnd > 0;
+
+                if ((!hasMinus && insertingAtStart) || replacingExistingMinus) {
+                    props.onKeyDown?.(event);
+                    return;
+                }
+            }
+
+            if (isDot) {
+                if (!hasDot) {
+                    props.onKeyDown?.(event);
+                    return;
+                }
+            }
+
+            event.preventDefault();
             props.onKeyDown?.(event);
         };
 
@@ -125,7 +211,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         fullWidth && 'number-input--full',
                     )}
                 >
-                    {/* Stepper: decrement button on the LEFT */}
                     {variant === 'stepper' && (
                         <button
                             type="button"
@@ -135,7 +220,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                             disabled={disabled || atMin}
                             aria-label="Diminuir"
                         >
-                            <Icon name="minus" size={14} />
+                            <Icon name="minus" size={16} />
                         </button>
                     )}
 
@@ -158,7 +243,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         {...props}
                     />
 
-                    {/* Default: chevron up/down stacked vertically on the RIGHT */}
                     {variant === 'default' && (
                         <div className="number-input__chevrons">
                             <button
@@ -184,7 +268,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         </div>
                     )}
 
-                    {/* Stepper: increment button on the RIGHT */}
                     {variant === 'stepper' && (
                         <button
                             type="button"
@@ -194,7 +277,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                             disabled={disabled || atMax}
                             aria-label="Aumentar"
                         >
-                            <Icon name="plus" size={14} />
+                            <Icon name="plus" size={16} />
                         </button>
                     )}
                 </div>

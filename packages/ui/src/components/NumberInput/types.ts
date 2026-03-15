@@ -4,9 +4,9 @@ export type NumberInputVariant = 'default' | 'stepper';
 
 export interface NumberInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'defaultValue' | 'onChange'> {
-  value?: number;
-  defaultValue?: number;
-  onChange?: (value: number | undefined) => void;
+  value?: number | undefined;
+  defaultValue?: number | undefined;
+  onChange?: (value: number | undefined ) => void;
   min?: number;
   max?: number;
   step?: number;

@@ -1,7 +1,5 @@
 import type * as React from 'react';
 
-export type CarouselOrientation = 'horizontal' | 'vertical';
-
 export interface CarouselProps {
   /** Array of slides — accepts any ReactNode: images, components, JSX */
   items: React.ReactNode[];
@@ -13,10 +11,6 @@ export interface CarouselProps {
   onChange?: (index: number) => void;
   /** Number of slides visible at once (default: 1) */
   itemsPerView?: number;
-  /** Layout direction (default: 'horizontal') */
-  orientation?: CarouselOrientation;
-  /** Viewport height for vertical orientation (default: 320px) */
-  height?: number | string;
   /** Show dot indicators (default: true) */
   showDots?: boolean;
   /** Show prev/next arrow buttons (default: true) */

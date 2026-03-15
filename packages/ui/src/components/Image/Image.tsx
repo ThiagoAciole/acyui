@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { classNames } from '../../utils/classNames';
 import { Skeleton } from '../Skeleton/Skeleton';
 import type { ImageProps } from './types';
+import placeholder from './placeholder.jpg';
 
 export type { ImageObjectFit, ImageProps, ImageRadius } from './types';
 
@@ -14,6 +15,8 @@ export const Image: React.FC<ImageProps> = ({
     className,
     style,
     fallback,
+    width,
+    height,
     ...props
 }) => {
     const [loaded, setLoaded] = useState(false);
@@ -21,16 +24,20 @@ export const Image: React.FC<ImageProps> = ({
 
     if (error && fallback) return <>{fallback}</>;
 
+    const resolvedSrc = src || placeholder;
+
     return (
         <div className={classNames('image-wrapper', className)} style={style}>
             {!loaded && !error && (
                 <div className={classNames('image-skeleton', `image-radius--${radius}`)}>
-                    <Skeleton width="100%" height="100%" />
+                    <Skeleton width={width} height={height} />
                 </div>
             )}
             <img
-                src={src}
+                src={resolvedSrc}
                 alt={alt}
+                width={width}
+                height={height}
                 className={classNames('image', `image-fit--${objectFit}`, `image-radius--${radius}`, loaded && 'image--loaded')}
                 onLoad={() => setLoaded(true)}
                 onError={() => setError(true)}

@@ -7,4 +7,6 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     objectFit?: ImageObjectFit;
     radius?: ImageRadius;
     fallback?: React.ReactNode;
+    width?: number;
+    height?: number;
 }

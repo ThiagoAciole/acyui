@@ -1,4 +1,4 @@
-import { Input, Select, Switch, TextArea } from '@aciole/acyon';
+import { Input, NumberInput, Select, Switch, TextArea } from '@aciole/acyon';
 import type { PlaygroundControl } from '../../../registry/types';
 
 interface ControlFieldProps {
@@ -44,18 +44,18 @@ export function ControlField({ control, value, onChange }: ControlFieldProps) {
     );
   }
 
+
   if (control.type === 'number') {
     return (
-      <Input
-        type="number"
+      <NumberInput
+        variant='stepper'
         label={control.label}
-        value={String(value ?? '')}
+        value={Number(value ?? 0)}
         placeholder={control.placeholder}
         min={control.min}
         max={control.max}
         step={control.step}
-        onChange={(event) => onChange(event.target.value === '' ? '' : Number(event.target.value))}
-        full
+        onChange={(value) => onChange(value)}
       />
     );
   }

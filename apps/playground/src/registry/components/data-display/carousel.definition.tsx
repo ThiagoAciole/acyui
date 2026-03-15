@@ -1,45 +1,36 @@
 import * as Labs from '@aciole/acyon';
+import img1 from '../../../images/image-1.jpg';
+import img2 from '../../../images/image-2.jpg';
+import img3 from '../../../images/image-3.jpg';
+import img5 from '../../../images/image-4-1.jpg';
+import img4 from '../../../images/image-4.jpg';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
 
 type CarouselPlaygroundProps = {
-  orientation: 'horizontal' | 'vertical';
   itemsPerView: string;
   showDots: boolean;
   showArrows: boolean;
   loop: boolean;
 };
 
-const SLIDES = [
-  { label: '1', color: 'var(--color-primary)' },
-  { label: '2', color: 'var(--color-success)' },
-  { label: '3', color: 'var(--color-warning)' },
-  { label: '4', color: 'var(--color-danger)' },
-  { label: '5', color: 'var(--text-subtle)' },
-];
+const SLIDES = [img1, img2, img3, img4, img5];
 
-function Slide({ label, color }: { label: string; color: string }) {
+function Slide({ src }: { src: string }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 200,
-        background: `color-mix(in srgb, ${color}, transparent 88%)`,
-        fontSize: '2rem',
-        fontWeight: 700,
-        color,
-        userSelect: 'none',
-      }}
-    >
-      {label}
-    </div>
+    <Labs.Image
+      src={src}
+      alt="Slide"
+      style={{ display: 'block' }}
+      objectFit="cover"
+      radius="large"
+      width={560}
+      height={315}
+    />
   );
 }
 
 const initialProps: CarouselPlaygroundProps = {
-  orientation: 'horizontal',
   itemsPerView: '1',
   showArrows: true,
   showDots: true,
@@ -51,19 +42,10 @@ const carouselDefinition: ComponentDefinition<CarouselPlaygroundProps> = defineC
   name: 'Carousel',
   category: 'data-display',
   icon: 'rectangle-horizontal',
-  description: 'Exibe itens em sequência com suporte a múltiplos por view e orientação vertical.',
+  description: 'Exibe itens em sequência com suporte a múltiplos por view.',
   playground: {
     initialProps,
     controls: [
-      {
-        type: 'select',
-        name: 'orientation',
-        label: 'Orientation',
-        options: [
-          { label: 'Horizontal', value: 'horizontal' },
-          { label: 'Vertical', value: 'vertical' },
-        ],
-      },
       { type: 'number', name: 'itemsPerView', label: 'Items Per View', min: 1, max: 5, step: 1 },
       { type: 'boolean', name: 'showArrows', label: 'Show Arrows' },
       { type: 'boolean', name: 'showDots', label: 'Show Dots' },
@@ -71,12 +53,11 @@ const carouselDefinition: ComponentDefinition<CarouselPlaygroundProps> = defineC
     ],
     render: (props) => {
       const perView = Math.max(1, Number(props.itemsPerView) || 1);
-      const isVertical = props.orientation === 'vertical';
+
       return (
-        <div style={{ width: isVertical ? 320 : '100%', maxWidth: 560 }}>
+        <div style={{ width: '100%', maxWidth: 560 }}>
           <Labs.Carousel
-            items={SLIDES.map((s) => <Slide key={s.label} label={s.label} color={s.color} />)}
-            orientation={props.orientation}
+            items={SLIDES.map((src, i) => <Slide key={i} src={src} />)}
             itemsPerView={perView}
             showDots={Boolean(props.showDots)}
             showArrows={Boolean(props.showArrows)}
@@ -87,26 +68,23 @@ const carouselDefinition: ComponentDefinition<CarouselPlaygroundProps> = defineC
     },
     code: (props) => {
       const perView = Math.max(1, Number(props.itemsPerView) || 1);
+
       const lines = [
-        `import { Carousel } from '@aciole/acyon';`,
+        `import { Carousel, Image } from '@aciole/acyon';`,
         ``,
-        `const items = [`,
-        `  <div>Slide 1</div>,`,
-        `  <div>Slide 2</div>,`,
-        `  <div>Slide 3</div>,`,
-        `];`,
-        ``,
-        `return (`,
-        `  <Carousel`,
-        `    items={items}`,
-        ...(props.orientation !== 'horizontal' ? [`    orientation="${props.orientation}"`] : []),
-        ...(perView > 1 ? [`    itemsPerView={${perView}}`] : []),
-        ...(props.showArrows === false ? [`    showArrows={false}`] : []),
-        ...(props.showDots === false ? [`    showDots={false}`] : []),
-        ...(props.loop ? [`    loop`] : []),
-        `  />`,
-        `);`,
+        `export function Example() {`,
+        `  return (`,
+        `    <Carousel`,
+        `      items={items}`,
+        ...(perView > 1 ? [`      itemsPerView={${perView}}`] : []),
+        ...(props.showArrows === false ? [`      showArrows={false}`] : []),
+        ...(props.showDots === false ? [`      showDots={false}`] : []),
+        ...(props.loop ? [`      loop`] : []),
+        `    />`,
+        `  );`,
+        `}`,
       ];
+
       return lines.join('\n');
     },
   },

@@ -7,7 +7,9 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   color: var(--text-main);
-  transition: border-color var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+  transition:
+    border-color var(--transition-normal) ease,
+    box-shadow var(--transition-normal) ease;
   overflow: hidden;
 }
 
@@ -45,7 +47,7 @@
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   font-variant-numeric: tabular-nums;
   padding: var(--space-3) var(--space-4);
@@ -85,7 +87,9 @@
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: background-color var(--transition-fast, 100ms) ease, color var(--transition-fast, 100ms) ease;
+  transition:
+    background-color var(--transition-fast, 100ms) ease,
+    color var(--transition-fast, 100ms) ease;
   padding: 0;
   line-height: 1;
 }
@@ -110,10 +114,19 @@
 
 /* ── Stepper variant: [−] [value] [+] horizontal ─────────── */
 
+.number-input--stepper {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.number-input--stepper .number-input__input,
+.number-input--stepper .number-input__stepper-btn {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 .number-input--stepper .number-input__input {
   text-align: center;
-  min-width: 56px;
-  flex: 0 1 auto;
   padding: var(--space-3) var(--space-2);
 }
 
@@ -122,13 +135,13 @@
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  width: 44px;
-  flex-shrink: 0;
   border: 0;
   background: transparent;
   color: var(--text-subtle);
   cursor: pointer;
-  transition: background-color var(--transition-fast, 100ms) ease, color var(--transition-fast, 100ms) ease;
+  transition:
+    background-color var(--transition-fast, 100ms) ease,
+    color var(--transition-fast, 100ms) ease;
   padding: 0;
 }
 
