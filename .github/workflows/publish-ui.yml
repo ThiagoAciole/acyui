@@ -46,7 +46,7 @@ jobs:
       - name: Commit and push version bump
         run: |
           git add packages/ui/package.json
-          git commit -m "chore: bump @aciole/acyon version [skip ci]"
+          git commit -m "chore: bump @acyui/components version [skip ci]"
           git push
 
       - name: Publish to npm

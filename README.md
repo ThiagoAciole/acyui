@@ -11,13 +11,13 @@ npm install @acyui/components
 ## Uso
 
 ```tsx
+import '@acyui/components/styles';
 import { ThemeProvider, Button } from '@acyui/components';
-import '@acyui/components/dist/acyui.css';
 
 function App() {
   return (
     <ThemeProvider>
-      <Button variant="primary">Hello Acyon</Button>
+      <Button variant="primary">Hello Acyui</Button>
     </ThemeProvider>
   );
 }

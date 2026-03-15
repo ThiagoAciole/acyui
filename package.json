@@ -12,6 +12,7 @@
     "build:all": "npm run build --workspace=packages/ui && npm run build --workspace=apps/playground",
     "pack:acyui": "npm pack --workspace=packages/ui",
     "publish:acyui": "npm publish --workspace=packages/ui",
+
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,css,json,md}\""
   },
