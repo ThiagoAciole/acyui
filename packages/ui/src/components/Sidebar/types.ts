@@ -17,7 +17,7 @@ export interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export interface SidebarItemOwnProps {
-    icon?: React.ReactNode | JSX.Element;
+    icon?: React.ReactNode;
     active?: boolean;
     searchText?: string;
     children?: React.ReactNode;

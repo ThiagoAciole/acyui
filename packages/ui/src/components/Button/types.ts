@@ -9,7 +9,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     variant?: ButtonVariant;
     size?: ButtonSize;
     loading?: boolean;
-    icon?: React.ReactNode | JSX.Element;
+    icon?: React.ReactNode;
     iconRight?: boolean;
     full?: boolean;
     color?: ButtonColor;

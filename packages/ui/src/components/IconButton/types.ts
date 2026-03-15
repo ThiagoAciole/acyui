@@ -5,7 +5,7 @@ export type IconButtonVariant = ButtonVariant;
 export type IconButtonSize = Extract<ButtonSize, 'small' | 'medium' | 'large'>;
 
 export interface IconButtonProps extends Omit<ButtonProps, 'children' | 'leftIcon' | 'rightIcon'> {
-    icon: React.ReactNode | JSX.Element;
+    icon: React.ReactNode;
     label?: string;
     variant?: IconButtonVariant;
     size?: IconButtonSize;
