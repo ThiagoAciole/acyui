@@ -56,7 +56,7 @@
   --space-24:   96px;
 
   /* ── Typography ────────────────────────────────────────── */
-  --font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  --font-family: 'Ubuntu', 'Inter', system-ui, -apple-system, sans-serif;
   
   --font-size-xs:   0.75rem; /* 12px */
   --font-size-sm:   0.875rem; /* 14px */
