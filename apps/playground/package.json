@@ -1,8 +1,8 @@
 {
-  "name": "@labs/playground",
+  "name": "@acioleui/playground",
   "version": "0.1.0",
   "private": true,
-  "description": "Acyui Playground - Component showcase and development environment",
+  "description": "AcioleUI Playground - Component showcase and development environment",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +11,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@acyui/components": "*",
+    "acioleui": "*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-router-dom": "^6.30.3"

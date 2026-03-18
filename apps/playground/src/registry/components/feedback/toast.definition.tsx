@@ -29,7 +29,7 @@ const toastDefinition: ComponentDefinition<ToastPlaygroundProps> = defineCompone
       { type: 'text', name: 'actionLabel', label: 'Button label', placeholder: 'Disparar toast' },
     ],
     render: (props) => <ToastPreview {...props} />,
-    code: (props) => `import { Button, useToast } from '@acyui/components';
+    code: (props) => `import { Button, useToast } from 'acioleui';
 
 function ToastDemo() {
   const { toast } = useToast();

@@ -16,10 +16,10 @@
 .form-field-message {
   margin-top: var(--space-1);
   display: block;
-  animation: labs-slide-down var(--transition-normal) ease-out;
+  animation: acioleui-slide-down var(--transition-normal) ease-out;
 }
 
-@keyframes labs-slide-down {
+@keyframes acioleui-slide-down {
   from {
     opacity: 0;
     transform: translateY(-4px);

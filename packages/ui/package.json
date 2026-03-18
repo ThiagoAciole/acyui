@@ -1,7 +1,7 @@
 {
-  "name": "@acyui/components",
-  "version": "0.1.4",
-  "description": "Acyui React component library",
+  "name": "acioleui",
+  "version": "0.1.0",
+  "description": "AcioleUI React component library",
   "keywords": [
     "react",
     "components",
@@ -10,20 +10,25 @@
   ],
   "license": "MIT",
   "type": "module",
-  "main": "./dist/acyui.cjs.js",
-  "module": "./dist/acyui.es.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/acyui.es.js",
-      "require": "./dist/acyui.cjs.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     },
     "./styles": {
-      "types": "./dist/acyui.css.d.ts",
-      "default": "./dist/acyui.css"
+      "types": "./dist/acioleui.css.d.ts",
+      "default": "./dist/acioleui.css"
     },
-    "./dist/acyui.css": "./dist/acyui.css",
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.es.js",
+      "require": "./dist/icons.cjs.js"
+    },
+    "./dist/acioleui.css": "./dist/acioleui.css",
     "./package.json": "./package.json"
   },
   "files": [

@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import { wrapSnippet } from '../../../shared/playground/playground-helpers';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
@@ -34,7 +34,7 @@ const tableDefinition: ComponentDefinition<TablePlaygroundProps> = defineCompone
         <Labs.Thead><Labs.Tr><Labs.Th>Nome</Labs.Th><Labs.Th>Papel</Labs.Th></Labs.Tr></Labs.Thead>
         <Labs.Tbody>
           <Labs.Tr><Labs.Td>Thiago</Labs.Td><Labs.Td>Owner</Labs.Td></Labs.Tr>
-          <Labs.Tr><Labs.Td>Acyon</Labs.Td><Labs.Td>System</Labs.Td></Labs.Tr>
+          <Labs.Tr><Labs.Td>AcioleUI</Labs.Td><Labs.Td>System</Labs.Td></Labs.Tr>
         </Labs.Tbody>
       </Labs.Table>
     ),
@@ -44,7 +44,7 @@ const tableDefinition: ComponentDefinition<TablePlaygroundProps> = defineCompone
       '    <Thead><Tr><Th>Nome</Th><Th>Papel</Th></Tr></Thead>',
       '    <Tbody>',
       '      <Tr><Td>Thiago</Td><Td>Owner</Td></Tr>',
-      '      <Tr><Td>Acyon</Td><Td>System</Td></Tr>',
+      '      <Tr><Td>AcioleUI</Td><Td>System</Td></Tr>',
       '    </Tbody>',
       '  </Table>',
       ');',

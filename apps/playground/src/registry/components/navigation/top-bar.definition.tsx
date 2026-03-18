@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import { wrapSnippet } from '../../../shared/playground/playground-helpers';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
@@ -29,11 +29,11 @@ const topbarDefinition: ComponentDefinition<TopBarPlaygroundProps> = defineCompo
       { type: 'boolean', name: 'sticky', label: 'Sticky' },
       { type: 'boolean', name: 'contentInside', label: 'Content inside' },
     ],
-    render: (props) => <Labs.TopBar logo={<Labs.Heading5>Labs</Labs.Heading5>} navPosition={props.navPosition} themeToggle={props.themeToggle} sticky={props.sticky} contentInside={props.contentInside} navItems={[{ label: 'Playground', href: '/' }, { label: 'Button', href: '/button' }]} />,
+    render: (props) => <Labs.TopBar logo={<Labs.Heading5>AcioleUI</Labs.Heading5>} navPosition={props.navPosition} themeToggle={props.themeToggle} sticky={props.sticky} contentInside={props.contentInside} navItems={[{ label: 'Playground', href: '/' }, { label: 'Button', href: '/button' }]} />,
     code: (props) => wrapSnippet(['TopBar', 'Heading5'], [
       'return (',
       '  <TopBar',
-      '    logo={<Heading5>Labs</Heading5>}',
+      '    logo={<Heading5>AcioleUI</Heading5>}',
       '    navItems={[',
       "      { label: 'Playground', href: '/' },",
       "      { label: 'Button', href: '/button' },",

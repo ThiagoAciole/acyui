@@ -1,5 +1,5 @@
-import type { IconName } from '@acyui/components';
-import { Code, Flex, Icon, iconRegistry, Input, PageHeader, useToast } from '@acyui/components';
+import type { IconName } from 'acioleui';
+import { Code, Flex, Icon, iconRegistry, Input, PageHeader, useToast } from 'acioleui';
 import { useCallback, useMemo, useState } from 'react';
 import './icons-section.css';
 
@@ -28,11 +28,11 @@ export function IconsSection() {
     <div className="icons-section">
       <PageHeader
         title="Icones"
-        description="Icones disponiveis no Acyui"
+        description="Icones disponiveis no AcioleUI"
         mb='0'
       />
       <Code style={{ backgroundColor: 'var(--border-neutral)', width: '350px' }}>
-        {`import { Icon } from '@acyui/components';`}
+        {`import { Icon } from 'acioleui';`}
         {`<Icon name="search" size={16} />`}
       </Code>
 

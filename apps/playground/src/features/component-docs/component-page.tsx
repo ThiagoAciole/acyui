@@ -1,4 +1,4 @@
-import { Box } from '@acyui/components';
+import { Box } from 'acioleui';
 import type { AnyComponentDefinition } from '../../registry/types';
 import { ComponentHeader } from './component-header';
 import { InspectorPanel } from './inspector-panel';

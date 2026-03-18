@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, CardBody, Flex, Grid, Heading, Heading4, Icon, Text } from '@acyui/components';
+import { Badge, Box, Button, Card, CardBody, Flex, Grid, Heading, Heading4, Icon, Text } from 'acioleui';
 import { useNavigate } from 'react-router-dom';
 import type { HomeRouteId } from '../../app/router';
 import './home-page.css';
@@ -20,7 +20,7 @@ export function HomePage({ route }: HomePageProps) {
       {isOverview ? (
         <Box className="home-hero">
           <Box className="home-hero__copy">
-            <Badge>Acyui</Badge>
+            <Badge>AcioleUI</Badge>
             <Flex direction="column" gap="5">
               <Heading>A biblioteca para montar interfaces reais com mais velocidade e menos atrito.</Heading>
               <Text className="home-hero__description" color="neutral">

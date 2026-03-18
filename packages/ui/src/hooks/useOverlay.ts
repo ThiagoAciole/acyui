@@ -11,13 +11,13 @@ let scrollLockCount = 0;
 
 function acquireScrollLock() {
     scrollLockCount++;
-    document.body.classList.add('acyon-scroll-lock');
+    document.body.classList.add('acioleui-scroll-lock');
 }
 
 function releaseScrollLock() {
     scrollLockCount = Math.max(0, scrollLockCount - 1);
     if (scrollLockCount === 0) {
-        document.body.classList.remove('acyon-scroll-lock');
+        document.body.classList.remove('acioleui-scroll-lock');
     }
 }
 

@@ -1,4 +1,4 @@
-name: Publish @acyui/components
+name: Publish acioleui
 
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
       - name: Commit and push version bump
         run: |
           git add packages/ui/package.json
-          git commit -m "chore: bump @acyui/components version [skip ci]"
+          git commit -m "chore: bump acioleui version [skip ci]"
           git push
 
       - name: Publish to npm

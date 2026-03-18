@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import * as React from 'react';
 
 export function ModalPreview(props: {
@@ -310,7 +310,7 @@ export function buildOpeningTag(name: string, props: Record<string, unknown>) {
 
 export function wrapSnippet(imports: string[], body: string[]) {
   const normalizedBody = body[0] === 'return (' && body[body.length - 1] === ');' ? body.slice(1, -1) : body;
-  return [`import { ${imports.join(', ')} } from '@acyui/components';`, '', ...normalizedBody].join('\n');
+  return [`import { ${imports.join(', ')} } from 'acioleui';`, '', ...normalizedBody].join('\n');
 }
 
 export function resolveImports<TProps extends Record<string, unknown>>(

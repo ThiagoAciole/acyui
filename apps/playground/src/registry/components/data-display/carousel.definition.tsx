@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import img1 from '../../../images/image-1.jpg';
 import img2 from '../../../images/image-2.jpg';
 import img3 from '../../../images/image-3.jpg';
@@ -40,7 +40,7 @@ const carouselDefinition: ComponentDefinition<CarouselPlaygroundProps> = defineC
   name: 'Carousel',
   category: 'data-display',
   icon: 'rectangle-horizontal',
-  description: 'Exibe itens em sequência com suporte a múltiplos por view.',
+  description: 'Exibe itens em sequÃªncia com suporte a mÃºltiplos por view.',
   playground: {
     initialProps,
     controls: [
@@ -68,7 +68,7 @@ const carouselDefinition: ComponentDefinition<CarouselPlaygroundProps> = defineC
       const perView = Math.max(1, Number(props.itemsPerView) || 1);
 
       const lines = [
-        `import { Carousel, Image } from '@acyui/components';`,
+        `import { Carousel, Image } from 'acioleui';`,
         ``,
         `export function Example() {`,
         `  return (`,

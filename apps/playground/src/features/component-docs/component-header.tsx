@@ -1,4 +1,4 @@
-import { Box, PageHeader } from '@acyui/components';
+import { Box, PageHeader } from 'acioleui';
 import type { AnyComponentDefinition } from '../../registry/types';
 
 interface ComponentHeaderProps {

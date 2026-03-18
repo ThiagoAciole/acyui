@@ -1,4 +1,4 @@
-import { Box, Flex, Heading2, Icon } from '@acyui/components';
+import { Box, Flex, Heading2, Icon } from 'acioleui';
 import './styles.css';
 
 interface DocSectionProps {

@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import { wrapSnippet } from '../../../shared/playground/playground-helpers';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
@@ -40,13 +40,13 @@ const spacerDefinition: ComponentDefinition<SpacerPlaygroundProps> = defineCompo
     render: (props) =>
       props.axis === 'horizontal' ? (
         <Labs.Flex align="center">
-          <DemoCard>Início</DemoCard>
+          <DemoCard>InÃ­cio</DemoCard>
           <Labs.Spacer axis="horizontal" size={props.size} />
           <DemoCard>Fim</DemoCard>
         </Labs.Flex>
       ) : (
         <Labs.Flex direction="column">
-          <DemoCard>Início</DemoCard>
+          <DemoCard>InÃ­cio</DemoCard>
           <Labs.Spacer axis="vertical" size={props.size} />
           <DemoCard>Fim</DemoCard>
         </Labs.Flex>

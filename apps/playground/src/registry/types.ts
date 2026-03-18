@@ -1,4 +1,4 @@
-import type { IconName } from '@acyui/components';
+import type { IconName } from 'acioleui';
 import type * as React from 'react';
 
 export type Category =

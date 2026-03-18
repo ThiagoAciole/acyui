@@ -1,5 +1,5 @@
 /*
- * global.css — Labs UI
+ * global.css - AcioleUI
  *
  * Reset e estilos base. Importe este arquivo uma vez no entry point
  * do app (ex: main.tsx) para aplicar o reset globalmente.
@@ -97,6 +97,6 @@ ul, ol {
 }
 
 /* Overlay scroll lock */
-body.acyon-scroll-lock {
+body.acioleui-scroll-lock {
   overflow: hidden;
 }

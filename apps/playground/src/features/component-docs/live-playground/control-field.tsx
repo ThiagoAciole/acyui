@@ -1,4 +1,4 @@
-import { Input, NumberInput, Select, Switch, TextArea } from '@acyui/components';
+import { Input, NumberInput, Select, Switch, TextArea } from 'acioleui';
 import type { PlaygroundControl } from '../../../registry/types';
 
 interface ControlFieldProps {

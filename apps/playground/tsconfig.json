@@ -3,7 +3,8 @@
   "compilerOptions": {
     "noEmit": true,
     "paths": {
-      "@acyui/components": ["../../packages/ui/src/index.ts"]
+      "acioleui": ["../../packages/ui/src/index.ts"],
+      "acioleui/icons": ["../../packages/ui/src/entrypoints/icons.ts"]
     }
   },
   "include": ["src"],

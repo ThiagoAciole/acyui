@@ -1,4 +1,4 @@
-import { Flex, Icon, IconButton, Text, useToast } from '@acyui/components';
+import { Flex, Icon, IconButton, Text, useToast } from 'acioleui';
 import type { PlaygroundControl } from '../../../registry/types';
 import { ControlField } from './control-field';
 import { PlaygroundCode } from './playground-code';

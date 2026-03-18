@@ -7,7 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       // Aponta para o source da lib local para hot reload durante dev
-      '@acyui/components': path.resolve(__dirname, '../../packages/ui/src/index.ts'),
+      'acioleui': path.resolve(__dirname, '../../packages/ui/src/index.ts'),
+      'acioleui/icons': path.resolve(__dirname, '../../packages/ui/src/entrypoints/icons.ts'),
       '/src/icons': path.resolve(__dirname, '../../packages/ui/src/icons'),
     },
   },

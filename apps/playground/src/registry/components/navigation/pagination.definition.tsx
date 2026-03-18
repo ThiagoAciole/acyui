@@ -27,7 +27,7 @@ const paginationDefinition: ComponentDefinition<PaginationPlaygroundProps> = def
     ],
     render: (props) => <PaginationPreview {...props} />,
     code: (props) => `import { useState } from 'react';
-import { Pagination } from '@acyui/components';
+import { Pagination } from 'acioleui';
 
 export function Example() {
   const [page, setPage] = useState(${Number(props.currentPage)});

@@ -27,5 +27,5 @@ export function buildOpeningTag(name: string, props: Record<string, unknown>) {
 }
 
 export function createSnippet(imports: string[], body: string[]) {
-  return [`import { ${imports.join(', ')} } from '@acyui/components';`, '', ...body].join('\n');
+  return [`import { ${imports.join(', ')} } from 'acioleui';`, '', ...body].join('\n');
 }

@@ -23,16 +23,19 @@ export default defineConfig({
     {
       name: 'generate-css-types',
       closeBundle() {
-        writeFileSync('dist/acyui.css.d.ts', 'export {};\n');
+        writeFileSync('dist/acioleui.css.d.ts', 'export {};\n');
       },
     },
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'acyui',
-      fileName: (format: string) => `acyui.${format}.js`,
-      cssFileName: 'acyui',
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        icons: resolve(__dirname, 'src/entrypoints/icons.ts'),
+      },
+      name: 'AcioleUI',
+      fileName: (format: string, entryName: string) => `${entryName}.${format}.js`,
+      cssFileName: 'acioleui',
       formats: ['es', 'cjs'],
     },
     rollupOptions: {

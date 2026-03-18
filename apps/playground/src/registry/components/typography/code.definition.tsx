@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import { buildOpeningTag, wrapSnippet } from '../../../shared/playground/playground-helpers';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
@@ -18,13 +18,13 @@ const codeDefinition: ComponentDefinition<CodePlaygroundProps> = defineComponent
   description: 'Estilo inline para snippets e tokens tecnicos.',
   playground: {
     initialProps: {
-      children: 'npm install @acyui/components',
+      children: 'npm install acioleui',
       size: 'small',
       weight: 'medium',
       block: false,
     },
     controls: [
-      { type: 'textarea', name: 'children', label: 'Content', placeholder: 'npm install @acyui/components' },
+      { type: 'textarea', name: 'children', label: 'Content', placeholder: 'npm install acioleui' },
       {
         type: 'select',
         name: 'size',

@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import * as React from 'react';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
@@ -52,7 +52,7 @@ const numberInputDefinition: ComponentDefinition<NumberInputPlaygroundProps> = d
   name: 'NumberInput',
   category: 'forms',
   icon: 'hash',
-  description: 'Campo numérico acessível com suporte a stepper.',
+  description: 'Campo numÃ©rico acessÃ­vel com suporte a stepper.',
   playground: {
     initialProps,
     controls: [
@@ -68,8 +68,8 @@ const numberInputDefinition: ComponentDefinition<NumberInputPlaygroundProps> = d
         ],
       },
       { type: 'number', name: 'step', label: 'Step', min: 0.01, placeholder: '1' },
-      { type: 'number', name: 'min', label: 'Min', placeholder: 'Sem mínimo' },
-      { type: 'number', name: 'max', label: 'Max', placeholder: 'Sem máximo' },
+      { type: 'number', name: 'min', label: 'Min', placeholder: 'Sem mÃ­nimo' },
+      { type: 'number', name: 'max', label: 'Max', placeholder: 'Sem mÃ¡ximo' },
       { type: 'boolean', name: 'disabled', label: 'Disabled' },
       { type: 'boolean', name: 'invalid', label: 'Invalid' },
       { type: 'boolean', name: 'fullWidth', label: 'Full Width' },

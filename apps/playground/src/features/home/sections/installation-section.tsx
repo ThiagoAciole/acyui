@@ -1,4 +1,4 @@
-import { Box, Code, Flex, Icon, PageHeader, Text } from '@acyui/components';
+import { Box, Code, Flex, Icon, PageHeader, Text } from 'acioleui';
 import { InstallStep } from '../../../components/InstallStep';
 import { homeContent } from '../content';
 

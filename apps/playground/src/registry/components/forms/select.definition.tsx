@@ -1,4 +1,4 @@
-import * as Labs from '@acyui/components';
+import * as Labs from 'acioleui';
 import { defineComponent } from '../../defineComponent';
 import type { ComponentDefinition } from '../../types';
 import { SelectPreview, wrapSnippet } from '../../../shared/playground/playground-helpers';

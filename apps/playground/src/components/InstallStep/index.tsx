@@ -1,4 +1,4 @@
-import { Box, Heading3, Text } from '@acyui/components';
+import { Box, Heading3, Text } from 'acioleui';
 import { CodePanel } from '../CodePanel';
 import './styles.css';
 
